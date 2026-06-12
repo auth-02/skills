@@ -1,17 +1,11 @@
 {
-  "output": "How to Use the how-to Skill.pdf",
-  "title": "Build a Polished How-To PDF in Four Steps",
-  "intro": "The how-to skill turns a folder of screenshots into a clean, uniform walkthrough PDF — a typeset cover, shadowed cards, slide numbers, optional step headers, and UI clean-up. Point it at your images, describe them in a small config, and run one command.",
-  "eyebrow": "HOW-TO SKILL  ·  GUIDE",
-  "footer": "how-to skill",
+  "output": "how to how to skill.pdf",
+  "footer": false,
+  "page": {"width": 1754, "height": 1240},
   "slides": [
-    { "image": "assets/step1.png",
-      "header": { "number": 1, "label": "Gather your screenshots in one folder" } },
-    { "image": "assets/step2.png",
-      "header": { "number": 2, "label": "Describe them in a guide.json config" } },
-    { "image": "assets/step3.png",
-      "header": { "number": 3, "label": "Run the build script" } },
-    { "image": "assets/step4.png",
-      "header": { "number": 4, "label": "Verify the output, then re-run after edits" } }
+    { "image": "slide0.png" },
+    { "image": "slide1.png" },
+    { "image": "slide2.png" },
+    { "image": "slide3.png" }
   ]
 }
