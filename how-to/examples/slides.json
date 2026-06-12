@@ -1,0 +1,52 @@
+{
+  "page": {"width": 1754, "height": 1240},
+  "cover": {
+    "eyebrow": "How-to skill &nbsp;·&nbsp; guide",
+    "title": "How-to, how-to.",
+    "sub": "build a polished walkthrough PDF — two ways.",
+    "intro": "Turn screenshots <em>or</em> plain content into a clean, uniform guide PDF: a typeset cover, every image on a shadowed white card with a hairline border, optional numbered step headers, UI patch-outs, and an optional slide counter. One consistent look — two flows.",
+    "index": [
+      {"n": "// 01", "t": "Two flows", "d": "Pick by whether you have images."},
+      {"n": "// 02", "t": "Flow 1 — assemble", "d": "Screenshots → PDF."},
+      {"n": "// 03", "t": "Flow 2 — generate", "d": "Content → slides → PDF."}
+    ]
+  },
+  "slides": [
+    {
+      "tag": "// 01 &nbsp;—&nbsp; OVERVIEW · TWO FLOWS",
+      "title": "Two flows",
+      "lead": "pick by whether you already have images.",
+      "counter": "STEP 1 / 3",
+      "blocks": [
+        {"label": "Which flow", "html": "<strong>Images provided</strong> (screenshots, exported diagrams) → <strong>Flow 1</strong>: assemble them directly. <strong>No images</strong> (documenting a concept, an API, a checklist — nothing to screenshot) → <strong>Flow 2</strong>: generate styled slides from content, then assemble them."},
+        {"label": "Setup", "html": "Both flows are Python. Assembling needs <strong>Pillow</strong>; generating (Flow 2) also needs <strong>headless Chrome</strong>. The skill uses <em>progressive disclosure</em> — <code>SKILL.md</code> is a lean router that points you at <code>references/flow-images.md</code> or <code>references/flow-content.md</code> for the full steps."}
+      ],
+      "foot_left": "~/.claude/skills/how-to",
+      "foot_right": "PICK A FLOW"
+    },
+    {
+      "tag": "// 02 &nbsp;—&nbsp; FLOW 1 · IMAGES → PDF",
+      "title": "Flow 1 — assemble",
+      "lead": "screenshots in, polished PDF out.",
+      "counter": "STEP 2 / 3",
+      "blocks": [
+        {"label": "What you get", "html": "Each image centered on a shadowed white card with a 1px border; an optional typeset cover (eyebrow + title + intro); optional numbered <strong>step headers</strong> on result slides; <strong>patch-outs</strong> for logos or controls (solid fill or gradient-safe column copy); an optional footer slide counter."},
+        {"label": "How to run", "html": "Write a <code>guide.json</code> listing your images (with optional per-slide <code>crop</code> / <code>patches</code> / <code>header</code>) and run <code>build_guide_pdf.py --config guide.json</code>. For a plain folder, quick mode: <code>--images ./shots --output Guide.pdf</code>. Full detail in <code>references/flow-images.md</code>."}
+      ],
+      "foot_left": "scripts/build_guide_pdf.py",
+      "foot_right": "FLOW 1 · ASSEMBLE"
+    },
+    {
+      "tag": "// 03 &nbsp;—&nbsp; FLOW 2 · CONTENT → PDF",
+      "title": "Flow 2 — generate",
+      "lead": "no screenshots? render them from content.",
+      "counter": "STEP 3 / 3",
+      "blocks": [
+        {"label": "What it does", "html": "Turns a content config into styled HTML slides → PNGs via headless Chrome, in the <strong>design aesthetic</strong> (warm paper, one rust accent, serif display + mono labels, hairline rules, corner ticks). Then hands those PNGs to Flow 1's assembler — so you still get the same cover, cards, and framing."},
+        {"label": "How to run", "html": "Write a <code>slides.json</code> (a cover + one entry per topic) and run <code>render_slides.py --config slides.json</code>; assemble the PNGs with <code>build_guide_pdf.py</code> using <code>\"footer\": false</code> (the generated slides carry their own footer). Full detail in <code>references/flow-content.md</code>. <strong>(This guide was built with Flow 2.)</strong>"}
+      ],
+      "foot_left": "scripts/render_slides.py",
+      "foot_right": "FLOW 2 · GENERATE"
+    }
+  ]
+}
