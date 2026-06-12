@@ -136,6 +136,8 @@ class Builder:
         return page, cw, ch
 
     def _footer(self, page, idx):
+        if not self.show_footer:
+            return
         dr = ImageDraw.Draw(page)
         if self.footer_text:
             dr.text((MARGIN+4, self.PH-56), self.footer_text, font=self.ffoot, fill=FOOT, anchor="lm")
