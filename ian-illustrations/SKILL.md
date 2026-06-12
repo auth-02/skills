@@ -124,4 +124,4 @@ Format: 16:9 horizontal. Style: sketch, eccentric, memorable, hand-drawn product
 
 ## Example
 
-`examples/hub-illustrations/` is a complete worked example for the "Hub" project article: the `prompts.md` shot list (4 illustrations — funnel/cross-section/listening/receipt metaphors) plus the four rendered PNGs they produced. Use it to calibrate the level of metaphor invention, annotation density, and how the shot list maps cognitive anchors to the 8 structure types.
+`examples/example-shot-list.md` is a worked example for a generic article ("How a rate limiter works"): the shot list plus full image-gen prompts for two illustrations (bucket-refill metaphor, before/after turnstile). Use it to calibrate the level of metaphor invention, annotation density, and how the shot list maps cognitive anchors to the 8 structure types.
