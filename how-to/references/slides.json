@@ -46,7 +46,7 @@
       "counter": "SKILL 3 / 5",
       "blocks": [
         {"label": "What it does", "html": "Breaks a large, complex, or risky change into a <strong>stack of small units</strong> — each with one responsibility, each building on the layer below — so every PR answers a single reviewable question instead of arriving as one unreadable diff."},
-        {"label": "How to use", "html": "Fires on build / implement / refactor work that <strong>spans multiple layers</strong> (models, storage, logic, tools, API, UI), or &ldquo;stacked PRs / stack this&rdquo;. Implement <em>bottom-up</em>: one branch &amp; PR per layer, layer N targets layer N&minus;1. Example: <code>examples/orchestrator-front-door.md</code>. Pairs with <strong>manifest</strong>&rsquo;s Stack section."}
+        {"label": "How to use", "html": "Fires on build / implement / refactor work that <strong>spans multiple layers</strong> (models, storage, logic, tools, API, UI), or &ldquo;stacked PRs / stack this&rdquo;. Implement <em>bottom-up</em>: one branch &amp; PR per layer, layer N targets layer N&minus;1. Example: <code>examples/notifications-system.md</code>. Pairs with <strong>manifest</strong>&rsquo;s Stack section."}
       ],
       "foot_left": "~/.claude/skills/stacked",
       "foot_right": "STACKED, REVIEWABLE CHANGES"
