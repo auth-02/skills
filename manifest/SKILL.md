@@ -216,7 +216,7 @@ For the manifest, fill in the title and any context you already have from the us
 
 ## Example
 
-`examples/orchestrator-front-door.md` is a real, comprehensive manifest to model yours on: a design-first task showing a full Context paragraph, a numbered Decisions log (with dates and a superseded/DONE entry), an Architecture diagram, exploration findings, a Stack section, and a filled-in Review. Use it to calibrate altitude and how much to capture at each stage.
+`examples/migrate-uploads-to-object-storage.md` is a comprehensive manifest to model yours on: a design-first migration showing a full Context paragraph, a numbered Decisions log (with dates), exploration findings with `file:line` cross-links, a Stack section, a per-layer Plan, testing + rollout plans, and the Review placeholder. Use it to calibrate altitude and how much to capture at each stage.
 
 ## Not for
 
