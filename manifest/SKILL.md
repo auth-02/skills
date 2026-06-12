@@ -26,17 +26,19 @@ Create the `tasks/` directory if it does not exist. **Every task gets its own su
 <repo-root>/tasks/
 └── <slug>/
     ├── manifest.md      # the living manifest          (template: templates/manifest.md)
+    ├── data/            # source data + documents: PDFs, Excel, CSVs, datasets, JSON inputs
     ├── artifacts/       # inspection notes, scripts,   (template: templates/inspection.md)
-    │                    # probe outputs, datasets
+    │                    # probe outputs
     └── runs/            # dated outputs from actual test/validation runs
-        └── YYYY-MM-DD/  # one folder per run date; SSE logs, tables, CSVs go here
+        └── YYYY-MM-DD/  # one folder per run date; SSE logs, tables, run CSVs go here
 ```
 
 Rules:
 - The manifest is always named **`manifest.md`** (never `<slug>.md`) — this makes it predictable for tooling (standup collection, grep).
-- **`artifacts/`** holds anything generated during exploration: inspection notes (`inspection.md`), one-off scripts (`extract.py`), dataset files (`*.csv`), schema probes. Named freely inside.
-- **`runs/`** holds time-stamped outputs from actually firing queries or running validation: SSE logs, parsed tables, benchmark results. One subfolder per date (`YYYY-MM-DD/`).
-- Never put inspection files or run outputs at the `tasks/<slug>/` root — keep the root clean (just `manifest.md` + the two subdirs).
+- **`data/`** holds source data and documents the task works with or produces as deliverables: PDFs, Excel (`*.xlsx`/`*.xls`), CSVs, TSVs, parquet, and JSON/dataset inputs. Create it on demand — the first time a PDF/spreadsheet/CSV-type file enters the task, put it here (preserve any meaningful grouping with subfolders, e.g. `data/results/`). Keep generated virtualenvs, `node_modules`, and caches **out** of the task tree entirely.
+- **`artifacts/`** holds anything generated during exploration: inspection notes (`inspection.md`), one-off scripts (`extract.py`), schema probes. Named freely inside. Data/document files belong in `data/`, not here.
+- **`runs/`** holds time-stamped outputs from actually firing queries or running validation: SSE logs, parsed tables, benchmark results. One subfolder per date (`YYYY-MM-DD/`). Run outputs stay under their dated folder — they are not moved into `data/`.
+- Never put inspection files, data files, or run outputs at the `tasks/<slug>/` root — keep the root clean (just `manifest.md` + the subdirs).
 
 Copy from `~/.claude/skills/manifest/templates/<name>.md` when creating the manifest — fill in the title, ask, and any decisions already captured, then leave the rest as placeholders.
 
