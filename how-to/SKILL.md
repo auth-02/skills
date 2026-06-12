@@ -86,6 +86,10 @@ config lives at `references/guide.json`. Requires Pillow
   to drop a baked-in title region from a slide when that text is becoming the
   typeset cover, or to remove window chrome. `crop` → `patches` → `header`.
 - Omit `title`/`intro` to skip the cover page (counter starts at slide 1).
+- **`footer`**: a string shows that caption (left) + the `x / N` counter (right) on
+  every page; `""` shows the counter only; **`false`** removes the whole footer band
+  (no caption, no counter) and lets the card use the full bottom margin. Set it to
+  `false` when the slides already carry their own footer/branding.
 - `page` is optional; default is A4 landscape at ~150dpi (1754×1240).
 - **`patches`** run before the header band. Two kinds:
   - `"fill": [r,g,b]` — solid rectangle. Sample the surrounding background color
