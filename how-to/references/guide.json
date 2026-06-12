@@ -1,21 +1,21 @@
 {
-  "output": "../How to Run a TIFIN RM Client Portfolio Diagnostic (Beta).pdf",
-  "title": "How to Run a TIFIN RM Client Portfolio Diagnostic",
-  "intro": "Learn how to access and initiate a comprehensive diagnostic report for your client or family office portfolios. This guide will help you quickly analyze key metrics like AUM, asset allocation, and top holdings to better serve your clients.",
-  "eyebrow": "CLIENT DIAGNOSTICS  ·  BETA",
-  "footer": "TIFIN RM  ·  Client Diagnostics (Beta)  —  How to run a client portfolio diagnostic",
+  "output": "../How to Export a Report.pdf",
+  "title": "How to Export a Report",
+  "intro": "Learn how to configure and export a report — choose a date range, pick the columns you need, and download the file. This guide walks through it end to end in a few steps.",
+  "eyebrow": "MY PRODUCT  ·  GUIDE",
+  "footer": "ACME  ·  How-to  —  How to export a report",
   "slides": [
-    { "image": "Screenshot 2026-06-12 at 2.45.51 PM.png",
+    { "image": "01-open.png",
       "crop": [0, 420, 1590, 1444],
-      "_note": "navigate step only; title region (incl. Scribe logo) dropped — it's the typeset cover" },
-    { "image": "Screenshot 2026-06-12 at 2.46.04 PM.png" },
-    { "image": "Screenshot 2026-06-12 at 2.46.11 PM.png" },
-    { "image": "Screenshot 2026-06-12 at 2.46.20 PM.png" },
-    { "image": "Screenshot 2026-06-12 at 2.46.28 PM.png" },
-    { "image": "Screenshot 2026-06-12 at 3.39.43 PM.png" },
-    { "image": "Screenshot 2026-06-12 at 3.39.50 PM.png" },
-    { "image": "Screenshot 2026-06-12 at 3.37.17 PM.png",
+      "_note": "navigate step only; title region (incl. app logo) dropped — it's the typeset cover" },
+    { "image": "02-date-range.png" },
+    { "image": "03-pick-columns.png" },
+    { "image": "04-preview.png" },
+    { "image": "05-format.png" },
+    { "image": "06-generate.png" },
+    { "image": "07-download.png" },
+    { "image": "08-result.png",
       "patches": [ { "box": [1288,610,1384,786], "fill": [243,245,248] } ],
-      "header": { "number": 8, "label": "Review your Client Diagnostics result" } }
+      "header": { "number": 8, "label": "Review your exported report" } }
   ]
 }
