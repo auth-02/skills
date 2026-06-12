@@ -237,11 +237,15 @@ def build(cfg, base_dir):
     intro  = cfg.get("intro")
     eyebrow= cfg.get("eyebrow")
     footer = cfg.get("footer", "")
+    # footer: false  -> no footer band at all (no caption, no "x / N" counter).
+    # footer: "text" -> caption left + counter right.  footer omitted/"" -> counter only.
+    show_footer = footer is not False
+    footer_text = footer if isinstance(footer, str) else ""
     slides = cfg["slides"]
     has_cover = bool(title or intro)
     total = len(slides) + (1 if has_cover else 0)
 
-    b = Builder(PW, PH, footer, total)
+    b = Builder(PW, PH, footer_text, total, show_footer)
     pages = []
     idx = 1
     if has_cover:
