@@ -206,3 +206,9 @@ A stack is successful when:
 - Testing can happen incrementally
 - Merging can happen incrementally
 - A reviewer can understand the full stack without confusion
+
+---
+
+## Example
+
+`examples/recognize-securities-fallback.md` is a real worked example: a **cross-repo** stack (layers split across the `fin` and `cortex` repos) with a full Stack table — each layer's responsibility, its dependency on the layer below, the single reviewable question it answers, and its status. Note how bottom layers (`fin/isin-fast-path`) are implemented and tested before the layers that build on them, and how the reviewable questions keep each PR scoped to one concern.
