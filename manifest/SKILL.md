@@ -20,7 +20,7 @@ If the current working directory is `~/tifin` itself (not inside a sub-repo) and
 
 **Why this matters:** tooling that collects manifest docs looks for `manifest.md` files under `~/tifin/*/tasks/**/manifest.md`. A manifest in the wrong location (or named anything other than `manifest.md`) won't be picked up, defeating the proactive-update workflow below.
 
-Create the `tasks/` directory if it does not exist. **Every task gets its own subfolder:**
+Create the `tasks/` directory if it does not exist. **Every task gets its own subfolder.** At init, create **only** `tasks/<slug>/manifest.md` — do **not** pre-create `data/`, `artifacts/`, or `runs/` upfront. Each subdir is created **lazily, only when something actually needs to go in it** (the first data file → `data/`, the first probe note/script → `artifacts/`, the first validation run → `runs/<date>/`). Empty scaffolding directories are noise; a fresh task is just its `manifest.md`.
 
 ```
 <repo-root>/tasks/
