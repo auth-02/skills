@@ -120,40 +120,68 @@ Example configs: `references/guide.json` (assembler) and
   `(242,245,249)` strip, a white circle with the bold `number`, and the `label`.
   Use it to make an un-numbered output slide read as the final step.
 
-## No images? Generate the slides from content first
+---
 
-This skill ships images → PDF, but the most common real request is *"make a guide
-of X"* with **no screenshots to work from** (documenting skills, an API, a concept,
-a checklist). Don't refuse and don't fall back to plain text — **render each slide
-yourself, then feed those PNGs to the builder.** The builder still does the cover
-framing, card, border, and counter; you just supply the content slides.
+# Flow 2 — no images → generate, then assemble  (`render_slides.py` → `build_guide_pdf.py`)
 
-Pipeline that works well:
+When the user wants a guide of content with **nothing to screenshot**, don't
+refuse and don't fall back to plain text. Generate the slides, then assemble them.
 
 1. **Gather the content.** Read the real source (files, `SKILL.md`s, docs). One
-   slide per topic; keep each slide to a lead line + 2 short blocks so it breathes.
-2. **Write one HTML file per slide** sized to the page (e.g. `1754×1240`,
-   `html,body{width;height;overflow:hidden}`). Style it deliberately — for the
-   user's own work, **invoke the `design` skill's aesthetic** (cream paper, one
-   rust accent, serif display + mono labels, hairline rules, corner ticks); it
-   makes the guide feel authored and doubles as a demo of that skill. A cover
-   slide + one slide per topic.
-3. **Render each HTML to PNG with headless Chrome** (present on macOS):
+   slide per topic; keep each to a lead line + 2 short blocks so it breathes.
+2. **Write a content config** `slides.json` (schema below) and render it:
    ```bash
-   CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-   "$CHROME" --headless=new --disable-gpu --hide-scrollbars \
-     --force-device-scale-factor=1 --window-size=1754,1240 \
-     --screenshot="/abs/slideN.png" "file:///abs/slideN.html"
+   python3 ~/.claude/skills/how-to/scripts/render_slides.py --config /abs/slides.json
    ```
-   Chrome fetches Google Fonts when online; always set robust local fallbacks
-   (e.g. `'Fraunces','Georgia',serif`, `'JetBrains Mono','Menlo',monospace`) so it
-   still renders offline. Confirm each PNG is exactly the page size.
-4. **Build with `footer: false`** when your slides already carry their own footer —
-   otherwise you get a redundant second footer band. Then verify as usual
-   (render a page from the PDF and Read it).
+   This writes `slide0.png` (cover, if present) + `slide1.png …` to `out_dir`, in
+   the `design` skill's aesthetic by default (warm paper, one rust accent, serif
+   display + mono labels, hairline rules, corner ticks). Chrome fetches Google
+   Fonts when online; the config's defaults include local fallbacks so it still
+   renders offline. `--html-only` skips rendering; `--out` overrides `out_dir`.
+3. **Assemble** the generated PNGs with `build_guide_pdf.py` (Flow 1), using
+   **`"footer": false`** — the generated slides already carry their own footer, so
+   the builder's footer would be redundant. Then verify (render a PDF page, Read it).
 
-Working files (HTML, PNGs, `guide.json`) live fine in a scratch dir like
+Working files (HTML, PNGs, configs) live fine in a scratch dir like
 `/tmp/<name>-guide/`; only the final PDF needs a real home.
+
+### content config schema (slides.json)
+
+```json
+{
+  "out_dir": "/tmp/my-guide",
+  "page": {"width": 1754, "height": 1240},
+  "theme": {"accent": "#C0622A", "bg": "#F4EFE4"},
+  "cover": {
+    "eyebrow": "CLAUDE CODE  ·  ~/.claude/skills",
+    "title": "My Skills",
+    "sub": "a field guide — what each one does.",
+    "intro": "Short paragraph. Inline <code>tags</code> allowed.",
+    "index": [ {"n": "// 01", "t": "manifest", "d": "Plan before code."} ]
+  },
+  "slides": [
+    {
+      "tag": "// 01  —  PLANNING",
+      "title": "manifest",
+      "lead": "write the plan before the code.",
+      "counter": "SKILL 1 / 5",
+      "blocks": [
+        {"label": "What it does", "html": "A living markdown doc ..."},
+        {"label": "How to use",   "html": "Fires at the <strong>start</strong> ..."}
+      ],
+      "foot_left": "~/.claude/skills/manifest",
+      "foot_right": "LIVING TASK MANIFEST"
+    }
+  ]
+}
+```
+
+- `lead`, `intro`, and block `html` values are **raw HTML** — use `<strong>`,
+  `<em>`, `<code>`, `&amp;`, `&ldquo;`, `&nbsp;` etc.
+- Omit `cover` to skip the cover slide. `blocks` can be any number of label/value rows.
+- `theme` overrides any `:root` CSS var (`accent`, `bg`, `ink`, `serif`, `mono`, …);
+  omit it for the default design aesthetic.
+- A full real example is `references/slides.json`.
 
 ## finding patch / header coordinates
 
