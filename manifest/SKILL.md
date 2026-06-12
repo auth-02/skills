@@ -212,6 +212,10 @@ Fill in the title and any context you already have from the user's ask, then kee
 - "Migrate sector_exposure to a normalized table" → create `tasks/normalize-sector-exposure/manifest.md`.
 - "Integrate with Acme Payments" → create `tasks/integrate-acme-payments/manifest.md`.
 
+## Example
+
+`examples/orchestrator-front-door.md` is a real, comprehensive manifest to model yours on: a design-first task showing a full Context paragraph, a numbered Decisions log (with dates and a superseded/DONE entry), an Architecture diagram, exploration findings, a Stack section, and a filled-in Review. Use it to calibrate altitude and how much to capture at each stage.
+
 ## Not for
 
 - "Fix the typo on line 12" — too small.
