@@ -199,13 +199,13 @@ When you can't tell whether something warrants a manifest update, err toward wri
 
 ## Templates
 
-On skill invocation, copy from `~/.claude/skills/manifest/templates/`:
+Copy from `~/.claude/skills/manifest/templates/` — but only when each is actually needed (see the lazy-creation rule above), not all upfront:
 
-- `manifest.md` — the main manifest scaffold (Context, Decisions, Exploration Results, Plan, Open questions, Confirmed findings, Testing plan, Rollout plan, Review). Always lands at `tasks/<slug>/manifest.md`.
-- `inspection.md` — for raw exploration probes. Lands at `tasks/<slug>/artifacts/inspection.md`.
-- `notes.md` — free-form scratch. Lands at `tasks/<slug>/artifacts/notes.md`.
+- `manifest.md` — the main manifest scaffold (Context, Decisions, Exploration Results, Plan, Open questions, Confirmed findings, Testing plan, Rollout plan, Review). Copied **at init** — lands at `tasks/<slug>/manifest.md`.
+- `inspection.md` — for raw exploration probes. Copied **only when you start probing** — lands at `tasks/<slug>/artifacts/inspection.md` (creating `artifacts/` then).
+- `notes.md` — free-form scratch. Copied **only when you need it** — lands at `tasks/<slug>/artifacts/notes.md`.
 
-Fill in the title and any context you already have from the user's ask, then keep the other sections as placeholders to populate as the work progresses.
+For the manifest, fill in the title and any context you already have from the user's ask, then keep the other sections as placeholders to populate as the work progresses.
 
 ## Example invocations
 
