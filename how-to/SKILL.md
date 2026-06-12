@@ -9,7 +9,10 @@ description: >-
   slides that lack one, and patch out unwanted UI (logos, zoom controls) either
   with a solid fill or by copying a clean column (gradient-safe). Use whenever
   the user wants to convert screenshots/images into a styled walkthrough,
-  tutorial, onboarding, or guide PDF.
+  tutorial, onboarding, or guide PDF. Also use when the user wants a guide PDF
+  of content with NO screenshots to start from (documenting skills, an API, a
+  concept) — render each slide as styled HTML → PNG (optionally in the design
+  skill's aesthetic), then assemble those into the PDF.
 ---
 
 # how-to — styled guide PDF from images
