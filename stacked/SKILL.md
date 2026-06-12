@@ -211,4 +211,4 @@ A stack is successful when:
 
 ## Example
 
-`examples/orchestrator-front-door.md` is a real worked example showing how a **complex** task — a persistent, checkpointed multi-agent orchestrator — decomposes into one tight bottom-up stack. Only the Stack section is shown: each layer's responsibility, its dependency on the layer below, the single reviewable question it answers, and its status. Note how even a large, multi-concern feature reduces to a short ladder where each layer is independently reviewable and nothing above can be built until the layer below it is tested.
+`examples/notifications-system.md` is a worked example showing how a **complex** feature — an in-app notifications system spanning schema, storage, delivery, API, and UI — decomposes into one tight bottom-up stack. Only the Stack section is shown: each layer's responsibility, its dependency on the layer below, the single reviewable question it answers, and its status. Note how even a large, multi-concern feature reduces to a short ladder where each layer is independently reviewable and nothing above can be built until the layer below it is tested.
