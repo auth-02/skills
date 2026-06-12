@@ -26,10 +26,10 @@ USAGE
 CONFIG SCHEMA (guide.json)
 {
   "output": "My Guide.pdf",
-  "title":  "How to Run a TIFIN RM Client Portfolio Diagnostic",
+  "title":  "How to Export a Report",
   "intro":  "Learn how to ...",            // omit title+intro to skip the cover page
-  "eyebrow": "CLIENT DIAGNOSTICS  ·  BETA",  // optional; shown above the title
-  "footer": "TIFIN RM  ·  Client Diagnostics (Beta)",  // string = caption+counter;
+  "eyebrow": "MY PRODUCT  ·  GUIDE",        // optional; shown above the title
+  "footer": "ACME  ·  How-to",              // string = caption+counter;
                                                         // "" = counter only; false = no footer band
 
   "page":   {"width": 1754, "height": 1240},  // optional; default A4 landscape @150dpi
