@@ -211,4 +211,4 @@ A stack is successful when:
 
 ## Example
 
-`examples/recognize-securities-fallback.md` is a real worked example: a **cross-repo** stack (layers split across the `fin` and `cortex` repos) with a full Stack table — each layer's responsibility, its dependency on the layer below, the single reviewable question it answers, and its status. Note how bottom layers (`fin/isin-fast-path`) are implemented and tested before the layers that build on them, and how the reviewable questions keep each PR scoped to one concern.
+`examples/orchestrator-front-door.md` is a real worked example showing how a **complex** task — a persistent, checkpointed multi-agent orchestrator — decomposes into one tight bottom-up stack. Only the Stack section is shown: each layer's responsibility, its dependency on the layer below, the single reviewable question it answers, and its status. Note how even a large, multi-concern feature reduces to a short ladder where each layer is independently reviewable and nothing above can be built until the layer below it is tested.
