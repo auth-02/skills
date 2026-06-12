@@ -124,4 +124,4 @@ Format: 16:9 horizontal. Style: sketch, eccentric, memorable, hand-drawn product
 
 ## Example
 
-`examples/example-shot-list.md` is a worked example for a generic article ("How a rate limiter works"): the shot list plus full image-gen prompts for two illustrations (bucket-refill metaphor, before/after turnstile). Use it to calibrate the level of metaphor invention, annotation density, and how the shot list maps cognitive anchors to the 8 structure types.
+`examples/prompts.md` is a complete worked example: the shot list plus full image-gen prompts for four illustrations, alongside the four rendered PNGs they produced (`The Single Page Promise`, `Task Lineage Tree`, `Hub Feed Pulse`, `The Timeline Question`). Use it to calibrate the level of metaphor invention, annotation density, and how the shot list maps cognitive anchors to the 8 structure types.
