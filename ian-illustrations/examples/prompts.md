@@ -1,6 +1,6 @@
 # Hub Illustrations — Prompt Shot List
 
-> Prompts generated using the [ian-xiaohei-illustrations](https://github.com/helloianneo/ian-xiaohei-illustrations) Claude Code skill — Xiaohei (小黑) illustration system by Ian Neo. Feed these prompts into any image generation tool (Midjourney, DALL-E, Stable Diffusion).
+> Prompts generated using the [ian-xiaohei-illustrations](https://github.com/helloianneo/ian-xiaohei-illustrations) skill — Xiaohei (小黑) illustration system by Ian Neo. Feed these prompts into any image generation tool (Midjourney, DALL-E, Stable Diffusion).
 
 ## Shot list
 1. [The Single Page Promise] — every scattered doc funneled into one place — Conceptual metaphor
