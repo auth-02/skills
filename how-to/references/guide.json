@@ -1,0 +1,21 @@
+{
+  "output": "../How to Run a TIFIN RM Client Portfolio Diagnostic (Beta).pdf",
+  "title": "How to Run a TIFIN RM Client Portfolio Diagnostic",
+  "intro": "Learn how to access and initiate a comprehensive diagnostic report for your client or family office portfolios. This guide will help you quickly analyze key metrics like AUM, asset allocation, and top holdings to better serve your clients.",
+  "eyebrow": "CLIENT DIAGNOSTICS  ·  BETA",
+  "footer": "TIFIN RM  ·  Client Diagnostics (Beta)  —  How to run a client portfolio diagnostic",
+  "slides": [
+    { "image": "Screenshot 2026-06-12 at 2.45.51 PM.png",
+      "crop": [0, 420, 1590, 1444],
+      "_note": "navigate step only; title region (incl. Scribe logo) dropped — it's the typeset cover" },
+    { "image": "Screenshot 2026-06-12 at 2.46.04 PM.png" },
+    { "image": "Screenshot 2026-06-12 at 2.46.11 PM.png" },
+    { "image": "Screenshot 2026-06-12 at 2.46.20 PM.png" },
+    { "image": "Screenshot 2026-06-12 at 2.46.28 PM.png" },
+    { "image": "Screenshot 2026-06-12 at 3.39.43 PM.png" },
+    { "image": "Screenshot 2026-06-12 at 3.39.50 PM.png" },
+    { "image": "Screenshot 2026-06-12 at 3.37.17 PM.png",
+      "patches": [ { "box": [1288,610,1384,786], "fill": [243,245,248] } ],
+      "header": { "number": 8, "label": "Review your Client Diagnostics result" } }
+  ]
+}
