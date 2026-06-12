@@ -57,7 +57,7 @@ directly into the styled PDF. Needs Pillow (`python3 -c "import PIL"`; if missin
       ]
     },
     { "image": "result.png",
-      "header": { "number": 8, "label": "Review your Client Diagnostics result" }
+      "header": { "number": 8, "label": "Review your result" }
     }
   ]
 }
