@@ -58,7 +58,7 @@
       "counter": "SKILL 4 / 5",
       "blocks": [
         {"label": "What it does", "html": "Ian&rsquo;s <strong>Xiaohei (小黑)</strong> illustration system: reads an article&rsquo;s cognitive anchors and turns them into <strong>16:9 hand-drawn image-gen prompts</strong> — pure white background, black line art, sparse English annotations, one accent flow color, the little deadpan creature performing the core action."},
-        {"label": "How to use", "html": "Give it the <strong>article content</strong>. It returns a <em>shot list</em>, then one prompt per illustration (choosing from 8 composition structures), then a QA self-check. Prompts &amp; annotations are always in English. Example: <code>examples/hub-illustrations/</code> — prompts plus four rendered PNGs."}
+        {"label": "How to use", "html": "Give it the <strong>article content</strong>. It returns a <em>shot list</em>, then one prompt per illustration (choosing from 8 composition structures), then a QA self-check. Prompts &amp; annotations are always in English. Example: <code>examples/example-shot-list.md</code> — shot list plus full prompts."}
       ],
       "foot_left": "~/.claude/skills/ian-illustrations",
       "foot_right": "XIAOHEI ARTICLE ILLUSTRATIONS"
