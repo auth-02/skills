@@ -1,0 +1,1120 @@
+<!-- NOTE: stand-in example. The original this-style-example.html (about a fictional
+     filesystem product) was lost and is not recoverable from session transcripts.
+     This is a recovered design-system artifact (Canonical Logging reference) that
+     faithfully demonstrates the same aesthetic. Use for calibration; do not copy content. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Canonical Logging — Cortex + Fin Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:           #F4EFE4;
+  --bg-alt:       #ECE5D2;
+  --bg-deep:      #E4DCC4;
+  --ink:          #1A1A1A;
+  --ink-soft:     #3A352D;
+  --ink-mute:     #8A8377;
+  --line:         #D9D1BC;
+  --accent:       #C0622A;
+  --accent-soft:  #E89A6B;
+  --accent-deep:  #8A4218;
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --r-1:4px; --r-2:8px; --r-3:16px; --r-4:24px; --r-5:40px; --r-6:64px; --r-7:96px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  background-image: radial-gradient(circle, #C9BFA3 0.7px, transparent 0.7px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ── LAYOUT ─────────────────────────────────────────── */
+.page { max-width: 1040px; margin: 0 auto; padding: 0 var(--r-4); }
+
+section {
+  padding: var(--r-7) 0;
+  border-top: 1px solid var(--line);
+}
+section:first-of-type { border-top: none; }
+
+/* ── HEADER ──────────────────────────────────────────── */
+.site-header {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+.site-header .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--r-3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.site-header .eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.site-header h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 58px);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin-bottom: var(--r-3);
+}
+.site-header h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.site-header .subtitle {
+  color: var(--ink-soft);
+  font-size: 15px;
+  max-width: 580px;
+  line-height: 1.6;
+}
+.header-meta {
+  display: flex;
+  gap: var(--r-5);
+  margin-top: var(--r-4);
+  padding-top: var(--r-4);
+  border-top: 1px solid var(--line);
+}
+.header-meta-item {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.header-meta-item strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 500;
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+/* ── META-ROW ────────────────────────────────────────── */
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+  margin-bottom: var(--r-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.meta-row .num { color: var(--accent); }
+
+/* ── SECTION TITLES ──────────────────────────────────── */
+.sec-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.5vw, 40px);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-bottom: var(--r-5);
+  max-width: 680px;
+}
+.sec-title em { font-style: italic; color: var(--accent); }
+
+.sec-lead {
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin-bottom: var(--r-5);
+  line-height: 1.65;
+}
+
+/* ── ARCHITECTURE LAYERS ─────────────────────────────── */
+.layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--r-3); margin-bottom: var(--r-5); }
+@media (max-width: 700px) { .layer-grid { grid-template-columns: 1fr; } }
+
+.layer-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  padding: var(--r-4);
+  position: relative;
+}
+.layer-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 10px; height: 10px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+.layer-card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 10px; height: 10px;
+  border-bottom: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+}
+.layer-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: var(--r-2);
+}
+.layer-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--r-2);
+}
+.layer-card h3 em { font-style: italic; color: var(--accent); }
+.layer-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+.layer-card .dest {
+  display: inline-block;
+  margin-top: var(--r-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  background: var(--bg-deep);
+  padding: 3px 8px;
+}
+
+/* ── CORRELATION MODEL ───────────────────────────────── */
+.corr-grid { display: grid; grid-template-columns: 180px 1fr; gap: 0; border: 1px solid var(--line); }
+.corr-row { display: contents; }
+.corr-key, .corr-val {
+  padding: 12px var(--r-3);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+.corr-key {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-deep);
+  background: var(--bg-alt);
+  border-right: 1px solid var(--line);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.corr-val { background: var(--bg); color: var(--ink-soft); }
+.corr-val strong { color: var(--ink); font-weight: 500; }
+.corr-val em { color: var(--ink-mute); font-style: normal; font-family: var(--font-mono); font-size: 11px; }
+.corr-row:last-child .corr-key, .corr-row:last-child .corr-val { border-bottom: none; }
+.corr-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  background: var(--bg-deep);
+  color: var(--ink-mute);
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.corr-badge.deferred { color: var(--accent-soft); background: #FEF0E8; }
+
+/* ── EVENT CATALOG ───────────────────────────────────── */
+.event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--r-3); }
+@media (max-width: 700px) { .event-grid { grid-template-columns: 1fr; } }
+
+.event-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 10px; height: 10px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+.event-header {
+  padding: var(--r-3) var(--r-3) var(--r-2);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.event-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.event-idx {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.12em;
+}
+.event-body { padding: var(--r-3); }
+.event-desc { font-size: 12px; color: var(--ink-mute); margin-bottom: var(--r-2); line-height: 1.5; }
+
+/* ── JSON BLOCKS ─────────────────────────────────────── */
+.json-block {
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  padding: var(--r-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-x: auto;
+  position: relative;
+}
+.json-block .j-brace { color: var(--ink-mute); }
+.json-block .j-key { color: var(--accent-deep); font-weight: 500; }
+.json-block .j-str { color: var(--ink-soft); }
+.json-block .j-num { color: #4A7A4A; }
+.json-block .j-important { color: var(--accent); font-weight: 500; }
+.json-block .j-mute { color: var(--ink-mute); font-style: italic; }
+
+.json-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 6px;
+}
+
+/* ── CANONICAL ANATOMY ───────────────────────────────── */
+.canon-grid { display: grid; grid-template-columns: 160px 1fr; gap: 0; margin-bottom: var(--r-5); }
+.canon-group { display: contents; }
+.canon-label, .canon-fields {
+  padding: 14px var(--r-3);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+.canon-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--bg-alt);
+  border-right: 1px solid var(--line);
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 16px;
+}
+.canon-fields { background: var(--bg); }
+.canon-fields .field {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--bg-deep);
+  color: var(--accent-deep);
+  padding: 2px 7px;
+  margin: 2px 3px 2px 0;
+}
+.canon-fields .desc { color: var(--ink-mute); font-size: 12px; margin-top: 4px; line-height: 1.5; }
+.canon-group:last-child .canon-label,
+.canon-group:last-child .canon-fields { border-bottom: none; }
+
+/* ── DEBUG FLOW ──────────────────────────────────────── */
+.debug-steps { counter-reset: debug-step; }
+.debug-step {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 0;
+  margin-bottom: var(--r-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+}
+.step-num {
+  background: var(--bg-deep);
+  border-right: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.step-content { padding: var(--r-3) var(--r-4); }
+.step-content h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.step-content h4 em { font-style: italic; color: var(--accent); }
+.step-content p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: var(--r-2); }
+.step-content .cmd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--bg-deep);
+  color: var(--accent-deep);
+  padding: 8px 12px;
+  display: block;
+  margin-top: 6px;
+  border-left: 2px solid var(--accent);
+}
+.step-content .cmd .prompt { color: var(--accent-soft); margin-right: 6px; }
+
+/* ── CODE SNIPPETS ───────────────────────────────────── */
+.code-section { margin-bottom: var(--r-5); }
+.code-title {
+  display: flex;
+  align-items: center;
+  gap: var(--r-2);
+  margin-bottom: var(--r-2);
+}
+.code-title span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.code-title span.accent { color: var(--accent); }
+.code-block {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  padding: var(--r-4);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-x: auto;
+  position: relative;
+}
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 10px; height: 10px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+.c-kw { color: var(--accent); font-weight: 500; }
+.c-fn { color: var(--accent-deep); }
+.c-str { color: #5A7A3A; }
+.c-cm { color: var(--ink-mute); font-style: italic; }
+.c-dec { color: #3A6A8A; }
+.c-num { color: var(--accent-deep); }
+
+/* ── REDACTION TABLE ─────────────────────────────────── */
+.redact-table { width: 100%; border-collapse: collapse; border: 1px solid var(--line); }
+.redact-table th {
+  background: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding: 10px var(--r-3);
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.redact-table td {
+  padding: 12px var(--r-3);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  vertical-align: top;
+  color: var(--ink-soft);
+}
+.redact-table tr:last-child td { border-bottom: none; }
+.redact-table td:first-child {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-deep);
+  background: var(--bg-alt);
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+}
+.tag-hash { color: #5A7A3A; font-family: var(--font-mono); font-size: 11px; }
+.tag-drop { color: #8A4218; font-family: var(--font-mono); font-size: 11px; }
+.tag-lf   { color: #2D5A8A; font-family: var(--font-mono); font-size: 11px; }
+.tag-ok   { color: var(--ink-mute); font-family: var(--font-mono); font-size: 11px; }
+
+/* ── INLINE HELPERS ──────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--r-4); }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+.note {
+  background: var(--bg-alt);
+  border-left: 2px solid var(--accent);
+  padding: var(--r-3) var(--r-4);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: var(--r-4) 0;
+  line-height: 1.6;
+}
+.note strong { color: var(--ink); }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: var(--r-5) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-footer span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="eyebrow">Canonical Logging System · Cortex + Fin</div>
+    <h1>Debuggable by <em>design.</em></h1>
+    <p class="subtitle">
+      A three-layer observability system for LangGraph agent workflows. Every run emits
+      structured JSON events correlated by <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px;color:var(--accent-deep)">run_id</code>
+      across cortex and fin — and one canonical summary line you can grep.
+    </p>
+    <div class="header-meta">
+      <div class="header-meta-item">Repos<strong>cortex · fin</strong></div>
+      <div class="header-meta-item">MRs<strong>!106 · !26</strong></div>
+      <div class="header-meta-item">Status<strong>In Review</strong></div>
+      <div class="header-meta-item">Branch<strong>feat/canonical-logging</strong></div>
+    </div>
+  </header>
+
+  <!-- ── 01 ARCHITECTURE ──────────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 01</span> &nbsp;— Architecture Overview</span>
+      <span>3 Layers · 2 Services</span>
+    </div>
+    <h2 class="sec-title">Three layers. One source of <em>truth</em> per concern.</h2>
+    <p class="sec-lead">
+      Each layer has a distinct audience and query pattern. Never duplicate data across layers —
+      Langfuse owns LLM I/O; stdout owns structure; the canonical line owns the run summary.
+    </p>
+
+    <div class="layer-grid">
+      <div class="layer-card">
+        <div class="layer-num">LAYER 01</div>
+        <h3><em>Langfuse</em> — LLM traces</h3>
+        <p>Full LLM I/O tree: prompts, completions, token costs, prompt template versions.
+           System of record for model inputs and outputs. Not duplicated to stdout.</p>
+        <span class="dest">langfuse.tifinrm.com</span>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 02</div>
+        <h3>Structured <em>events</em></h3>
+        <p>Narrow JSON stream to stdout marking state transitions, node entry/exit,
+           tool invocations, fin checkpoints, and errors. Each event carries
+           <code style="font-size:10px;background:var(--bg-deep);padding:1px 5px;color:var(--accent-deep)">run_id</code>
+           for cross-service correlation.</p>
+        <span class="dest">stdout → ECS logs</span>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 03</div>
+        <h3>Canonical <em>run line</em></h3>
+        <p>One fat JSON per run at completion. Aggregates llm_calls, token counts,
+           tools_used, nodes_visited, duration. The grep target for triage —
+           find any run by <code style="font-size:10px;background:var(--bg-deep);padding:1px 5px;color:var(--accent-deep)">kind=canonical</code>.</p>
+        <span class="dest">stdout → ECS logs</span>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Data flow:</strong> LangGraph node executes → <code style="font-size:12px;font-family:var(--font-mono)">@logged_node</code> emits node.enter/exit →
+      <code style="font-size:12px;font-family:var(--font-mono)">FinClient.call()</code> emits tool.call/result → fin emits checkpoints →
+      router <code style="font-size:12px;font-family:var(--font-mono)">finally</code> emits canonical line. Langfuse trace captured once
+      at run entry via <code style="font-size:12px;font-family:var(--font-mono)">start_as_current_observation</code>.
+    </div>
+  </section>
+
+  <!-- ── 02 CORRELATION ────────────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 02</span> &nbsp;— Correlation Model</span>
+      <span>5 ID Fields</span>
+    </div>
+    <h2 class="sec-title">Every event carries the same <em>envelope.</em></h2>
+    <p class="sec-lead">
+      These five fields are the spine of every log line. To reconstruct a full run:
+      filter by <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">run_id</code> and sort by <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">ts</code>.
+    </p>
+
+    <div class="corr-grid">
+      <div class="corr-row">
+        <div class="corr-key">thread_id</div>
+        <div class="corr-val">
+          <strong>Conversation session.</strong>
+          One thread contains multiple requests (e.g. all turns of a chat).
+          Maps to Langfuse <code style="font-size:11px;font-family:var(--font-mono)">session_id</code>.
+          <em>UUIDs only — never the user's name</em>
+        </div>
+      </div>
+      <div class="corr-row">
+        <div class="corr-key">request_id</div>
+        <div class="corr-val">
+          <strong>One HTTP call into cortex.</strong>
+          A thread is a collection of request_ids.
+          Set by the HTTP middleware from <code style="font-size:11px;font-family:var(--font-mono)">x-request-id</code> header (or generated).
+          <em>Propagated to fin as x-request-id</em>
+        </div>
+      </div>
+      <div class="corr-row">
+        <div class="corr-key">run_id</div>
+        <div class="corr-val">
+          <strong>One LangGraph graph invocation.</strong>
+          Fresh UUID per execution — unique across retries, resumes, and parallel threads.
+          The primary grep key for a single agent run.
+          <em>Propagated to fin as x-run-id — all fin events carry it</em>
+        </div>
+      </div>
+      <div class="corr-row">
+        <div class="corr-key">branch_id</div>
+        <div class="corr-val">
+          <strong>Send() fan-out child.</strong> <span class="corr-badge deferred">P4 — deferred</span><br/>
+          Only present when a child branch differs from the root run.
+          On root branches <code style="font-size:11px;font-family:var(--font-mono)">branch_id == run_id</code> — omitted from events to reduce noise.
+          <em>Will appear when Send() fan-out ships</em>
+        </div>
+      </div>
+      <div class="corr-row">
+        <div class="corr-key">langfuse_trace_id</div>
+        <div class="corr-val">
+          <strong>Drill-down key to Langfuse UI.</strong>
+          Set once at run entry. Every event and the canonical line carry it.
+          Click it → see full LLM I/O tree in Langfuse.
+          <em>Absent when Langfuse is disabled or trace creation fails</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03 EVENT CATALOG ──────────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 03</span> &nbsp;— Event Catalog</span>
+      <span>7 Event Types</span>
+    </div>
+    <h2 class="sec-title">Every event is a single JSON <em>line.</em></h2>
+    <p class="sec-lead">
+      All events share the correlation envelope (<code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">ts, run_id, thread_id, request_id, langfuse_trace_id</code>).
+      The fields below are the event-specific additions.
+    </p>
+
+    <div class="event-grid">
+      <!-- node.enter -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="event-name">node.enter</span>
+          <span class="event-idx">001</span>
+        </div>
+        <div class="event-body">
+          <p class="event-desc">Emitted by @logged_node at the start of every LangGraph node, including codeact_agent and codeact_tools iterations.</p>
+          <div class="json-block">
+<span class="j-brace">{</span>
+  <span class="j-key">"event"</span>: <span class="j-important">"node.enter"</span>,
+  <span class="j-key">"ts"</span>: <span class="j-str">"2026-06-01T13:17:45.593Z"</span>,
+  <span class="j-key">"graph"</span>: <span class="j-str">"client_diagnostics"</span>,
+  <span class="j-key">"node"</span>: <span class="j-str">"codeact_agent_client_diagnostics"</span>,
+  <span class="j-key">"phase"</span>: <span class="j-str">"codeact_agent"</span>,
+  <span class="j-key">"run_id"</span>: <span class="j-str">"d871ce07-..."</span>
+<span class="j-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- node.exit -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="event-name">node.exit</span>
+          <span class="event-idx">002</span>
+        </div>
+        <div class="event-body">
+          <p class="event-desc">Emitted on successful return. <code style="font-size:10px;font-family:var(--font-mono)">status=interrupted</code> for GraphInterrupt (normal LangGraph control flow — not an error).</p>
+          <div class="json-block">
+<span class="j-brace">{</span>
+  <span class="j-key">"event"</span>: <span class="j-important">"node.exit"</span>,
+  <span class="j-key">"graph"</span>: <span class="j-str">"client_diagnostics"</span>,
+  <span class="j-key">"node"</span>: <span class="j-str">"agent_gate_node"</span>,
+  <span class="j-key">"phase"</span>: <span class="j-str">"agent_gate"</span>,
+  <span class="j-key">"status"</span>: <span class="j-str">"ok"</span>,  <span class="j-mute">// or "interrupted"</span>
+  <span class="j-key">"duration_ms"</span>: <span class="j-num">847</span>
+<span class="j-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- tool.call -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="event-name">tool.call</span>
+          <span class="event-idx">003</span>
+        </div>
+        <div class="event-body">
+          <p class="event-desc">Emitted by FinClient.call() in cortex before the HTTP request. metadata.body carries scope + filters — the exact ask sent to fin.</p>
+          <div class="json-block">
+<span class="j-brace">{</span>
+  <span class="j-key">"event"</span>: <span class="j-important">"tool.call"</span>,
+  <span class="j-key">"tool"</span>: <span class="j-str">"get_portfolio_performance"</span>,
+  <span class="j-key">"service"</span>: <span class="j-str">"fin"</span>,
+  <span class="j-key">"metadata"</span>: <span class="j-brace">{</span>
+    <span class="j-key">"body"</span>: <span class="j-brace">{</span>
+      <span class="j-key">"scope"</span>: <span class="j-brace">{"type":"client","ids":["uuid"]}</span>,
+      <span class="j-key">"filters"</span>: <span class="j-brace">{"timeframes":["SI"]}</span>
+    <span class="j-brace">}</span>
+  <span class="j-brace">}</span>
+<span class="j-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- tool.result -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="event-name">tool.result</span>
+          <span class="event-idx">004</span>
+        </div>
+        <div class="event-body">
+          <p class="event-desc">Emitted by FinClient.call() on successful HTTP response, and by fin's tool_span() context manager. Both sides emit — two log lines per successful tool call.</p>
+          <div class="json-block">
+<span class="j-brace">{</span>
+  <span class="j-key">"event"</span>: <span class="j-important">"tool.result"</span>,
+  <span class="j-key">"tool"</span>: <span class="j-str">"get_portfolio_performance"</span>,
+  <span class="j-key">"service"</span>: <span class="j-str">"fin"</span>,
+  <span class="j-key">"status"</span>: <span class="j-str">"ok"</span>,
+  <span class="j-key">"duration_ms"</span>: <span class="j-num">4670</span>,
+  <span class="j-key">"run_id"</span>: <span class="j-str">"d871ce07-..."</span>
+<span class="j-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- checkpoint -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="event-name">checkpoint</span>
+          <span class="event-idx">005</span>
+        </div>
+        <div class="event-body">
+          <p class="event-desc">Named mid-execution milestone inside fin service methods. Answers "where inside fin did it fail?" without log-spamming every sub-operation.</p>
+          <div class="json-block">
+<span class="j-brace">{</span>
+  <span class="j-key">"event"</span>: <span class="j-important">"checkpoint"</span>,
+  <span class="j-key">"step"</span>: <span class="j-str">"fetching_market_value"</span>,
+  <span class="j-key">"metadata"</span>: <span class="j-brace">{</span>
+    <span class="j-key">"schema"</span>: <span class="j-str">"public_jan31_demo"</span>,
+    <span class="j-key">"path"</span>: <span class="j-str">"client"</span>,
+    <span class="j-key">"timeframes"</span>: <span class="j-str">["SI"]</span>
+  <span class="j-brace">}</span>,
+  <span class="j-key">"run_id"</span>: <span class="j-str">"d871ce07-..."</span>
+<span class="j-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- error -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="event-name">error</span>
+          <span class="event-idx">006</span>
+        </div>
+        <div class="event-body">
+          <p class="event-desc">Emitted on exceptions in @logged_node, FinClient, tool_span, and on codeact iteration cap. error_msg is first line only — PII and stack frames redacted.</p>
+          <div class="json-block">
+<span class="j-brace">{</span>
+  <span class="j-key">"event"</span>: <span class="j-important">"error"</span>,
+  <span class="j-key">"error_type"</span>: <span class="j-str">"IterationCapReached"</span>,
+  <span class="j-key">"error_msg"</span>: <span class="j-str">"codeact stopped after 6 LLM iterations"</span>,
+  <span class="j-key">"graph"</span>: <span class="j-str">"client_diagnostics"</span>,
+  <span class="j-key">"phase"</span>: <span class="j-str">"codeact_agent"</span>,
+  <span class="j-key">"status"</span>: <span class="j-str">"error"</span>,
+  <span class="j-key">"duration_ms"</span>: <span class="j-num">42180</span>
+<span class="j-brace">}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 04 CANONICAL ANATOMY ──────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 04</span> &nbsp;— Canonical Line Anatomy</span>
+      <span>kind = "canonical"</span>
+    </div>
+    <h2 class="sec-title">One line per run. <em>Everything</em> you need for triage.</h2>
+    <p class="sec-lead">
+      Emitted in the router's <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">finally</code> block — fires on success, failure, and interrupt.
+      Filter with <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">kind=canonical</code> to see only run summaries.
+    </p>
+
+    <div class="canon-grid">
+      <div class="canon-group">
+        <div class="canon-label">Identity</div>
+        <div class="canon-fields">
+          <span class="field">run_id</span>
+          <span class="field">langfuse_trace_id</span>
+          <span class="field">graph</span>
+          <span class="field">entrypoint</span>
+          <span class="field">env</span>
+          <span class="field">thread_id</span>
+          <span class="field">request_id</span>
+          <span class="field">user_id</span>
+          <span class="field">org_id</span>
+          <div class="desc">Stable identifiers. <code style="font-size:11px;font-family:var(--font-mono)">env</code> = local/dev/prod. <code style="font-size:11px;font-family:var(--font-mono)">entrypoint</code> = "stream" for all router-initiated runs.</div>
+        </div>
+      </div>
+      <div class="canon-group">
+        <div class="canon-label">Outcome</div>
+        <div class="canon-fields">
+          <span class="field">status</span>
+          <span class="field">terminal_node</span>
+          <span class="field">failed_phase</span>
+          <span class="field">error_type</span>
+          <span class="field">error_msg</span>
+          <div class="desc">
+            <code style="font-size:11px;font-family:var(--font-mono)">status</code> = "success" | "failed".
+            <code style="font-size:11px;font-family:var(--font-mono)">failed_phase</code> = which phase/node broke (e.g. "iteration_cap", "codeact_agent").
+            <code style="font-size:11px;font-family:var(--font-mono)">terminal_node</code> = last node that successfully completed.
+          </div>
+        </div>
+      </div>
+      <div class="canon-group">
+        <div class="canon-label">Timing</div>
+        <div class="canon-fields">
+          <span class="field">started_at</span>
+          <span class="field">ended_at</span>
+          <span class="field">duration_ms</span>
+          <div class="desc">Wall-clock duration of the entire graph execution including all LLM calls, fin round-trips, and python_exec runs.</div>
+        </div>
+      </div>
+      <div class="canon-group">
+        <div class="canon-label">LLM</div>
+        <div class="canon-fields">
+          <span class="field">llm_calls</span>
+          <span class="field">tokens_in</span>
+          <span class="field">tokens_out</span>
+          <span class="field">models_used</span>
+          <div class="desc">Counted via <code style="font-size:11px;font-family:var(--font-mono)">llm_counting_span</code> — wraps every codeact LLM call and reads <code style="font-size:11px;font-family:var(--font-mono)">response.usage</code>. <code style="font-size:11px;font-family:var(--font-mono)">cost_usd</code> deferred (needs versioned pricing table).</div>
+        </div>
+      </div>
+      <div class="canon-group">
+        <div class="canon-label">Tools</div>
+        <div class="canon-fields">
+          <span class="field">tool_calls</span>
+          <span class="field">tool_retries</span>
+          <span class="field">tools_used</span>
+          <div class="desc">Incremented by <code style="font-size:11px;font-family:var(--font-mono)">log_event("tool.call")</code> in FinClient — every fin endpoint call is counted. <code style="font-size:11px;font-family:var(--font-mono)">tools_used</code> is the unique set of endpoint names called.</div>
+        </div>
+      </div>
+      <div class="canon-group">
+        <div class="canon-label">Graph</div>
+        <div class="canon-fields">
+          <span class="field">nodes_visited</span>
+          <span class="field">phases_completed</span>
+          <div class="desc">Counts successful <code style="font-size:11px;font-family:var(--font-mono)">node.exit</code> events — includes each codeact_agent/codeact_tools iteration. <code style="font-size:11px;font-family:var(--font-mono)">phases_completed</code> is a count of distinct phase names that exited ok.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="json-label">Example canonical line</div>
+    <div class="json-block" style="margin-top:0">
+<span class="j-brace">{</span>
+  <span class="j-key">"kind"</span>: <span class="j-important">"canonical"</span>,
+  <span class="j-key">"run_id"</span>: <span class="j-str">"d871ce07-66e4-41a6-b971-f837a6796c39"</span>,
+  <span class="j-key">"graph"</span>: <span class="j-str">"client_diagnostics"</span>, <span class="j-key">"entrypoint"</span>: <span class="j-str">"stream"</span>, <span class="j-key">"env"</span>: <span class="j-str">"local"</span>,
+  <span class="j-key">"langfuse_trace_id"</span>: <span class="j-str">"6dd56bd9ba83eaf606838e4ca17ea942"</span>,
+  <span class="j-key">"status"</span>: <span class="j-str">"success"</span>, <span class="j-key">"terminal_node"</span>: <span class="j-str">"agent_gate_node"</span>,
+  <span class="j-key">"started_at"</span>: <span class="j-str">"2026-06-01T13:19:16.021Z"</span>, <span class="j-key">"duration_ms"</span>: <span class="j-num">29053</span>,
+  <span class="j-key">"llm_calls"</span>: <span class="j-num">4</span>, <span class="j-key">"tokens_in"</span>: <span class="j-num">18420</span>, <span class="j-key">"tokens_out"</span>: <span class="j-num">1840</span>, <span class="j-key">"models_used"</span>: [<span class="j-str">"gpt-5.4-mini"</span>],
+  <span class="j-key">"tool_calls"</span>: <span class="j-num">2</span>, <span class="j-key">"tools_used"</span>: [<span class="j-str">"get_portfolio_asset_allocation"</span>, <span class="j-str">"get_portfolio_performance"</span>],
+  <span class="j-key">"nodes_visited"</span>: <span class="j-num">11</span>, <span class="j-key">"phases_completed"</span>: <span class="j-num">3</span>
+<span class="j-brace">}</span>
+    </div>
+  </section>
+
+  <!-- ── 05 HOW TO DEBUG ───────────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 05</span> &nbsp;— Triage Flow</span>
+      <span>5 Steps</span>
+    </div>
+    <h2 class="sec-title">From <em>something's wrong</em> to <em>here's the fix.</em></h2>
+
+    <div class="debug-steps">
+      <div class="debug-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Find the <em>run</em></h4>
+          <p>Every run produces one canonical line. Start there — filter by <code style="font-size:11px;font-family:var(--font-mono)">kind=canonical</code> and narrow by time window, graph, or org_id.</p>
+          <code class="cmd">
+            <span class="prompt">$</span>grep '"kind":"canonical"' cortex.log | grep '"status":"failed"' | tail -20
+          </code>
+          <code class="cmd" style="margin-top:4px">
+            <span class="prompt">$</span>grep '"run_id":"d871ce07"' cortex.log | python3 -m json.tool
+          </code>
+        </div>
+      </div>
+
+      <div class="debug-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Read the <em>canonical line</em></h4>
+          <p>The canonical line tells you <em>what</em> happened at a glance. Three fields answer most triage questions immediately:</p>
+          <p>
+            <code style="font-size:11px;font-family:var(--font-mono);background:var(--bg-deep);padding:2px 6px">status</code> — did it succeed?&nbsp;&nbsp;
+            <code style="font-size:11px;font-family:var(--font-mono);background:var(--bg-deep);padding:2px 6px">failed_phase</code> — which phase broke?&nbsp;&nbsp;
+            <code style="font-size:11px;font-family:var(--font-mono);background:var(--bg-deep);padding:2px 6px">duration_ms</code> — was it slow?
+          </p>
+          <p>If <code style="font-size:11px;font-family:var(--font-mono)">failed_phase=iteration_cap</code> → the agent looped without converging; check the LLM prompt via Langfuse. If <code style="font-size:11px;font-family:var(--font-mono)">tool_calls=0</code> → the agent never reached fin; look at the codeact agent events.</p>
+        </div>
+      </div>
+
+      <div class="debug-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Trace the <em>event trail</em></h4>
+          <p>Filter all events by <code style="font-size:11px;font-family:var(--font-mono)">run_id</code> and sort by <code style="font-size:11px;font-family:var(--font-mono)">ts</code>. Follow the chain: <code style="font-size:11px;font-family:var(--font-mono)">node.enter → node.exit → tool.call → checkpoint → tool.result</code>. An event without its exit pair is where execution stopped.</p>
+          <code class="cmd">
+            <span class="prompt">$</span>grep '"run_id":"d871ce07"' cortex.log fin.log | sort -t'"' -k8 | python3 -c "import sys,json; [print(json.loads(l)['event'], '-', json.loads(l).get('node') or json.loads(l).get('step') or json.loads(l).get('tool','')) for l in sys.stdin if l.strip()]"
+          </code>
+        </div>
+      </div>
+
+      <div class="debug-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Understand the <em>fin failure</em></h4>
+          <p>If the run called fin, check fin's log for the same <code style="font-size:11px;font-family:var(--font-mono)">run_id</code>. The <code style="font-size:11px;font-family:var(--font-mono)">tool.call</code> shows exactly what cortex asked (scope, filters). The checkpoint sequence shows where inside fin it stopped. The <code style="font-size:11px;font-family:var(--font-mono)">error</code> event shows the exception class and first line.</p>
+          <p>Example checkpoint trail for a performance failure:</p>
+          <code class="cmd" style="font-size:10px">
+            performance_params_resolved → fetching_market_value → market_value_fetched → <span style="color:var(--accent)">error: DataError: invalid UUID</span>
+          </code>
+          <p style="margin-top:6px">The error fires before <code style="font-size:11px;font-family:var(--font-mono)">computing_xirr</code> — so the Redshift fetch succeeded but the org_id was malformed.</p>
+        </div>
+      </div>
+
+      <div class="debug-step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h4>Deep dive the <em>LLM</em> — Langfuse</h4>
+          <p>For semantic failures (the model got the answer wrong, picked the wrong tool, constructed a bad query) — the structured events won't tell you enough. Use <code style="font-size:11px;font-family:var(--font-mono)">langfuse_trace_id</code> from the canonical line to jump directly to the full prompt/response tree in Langfuse.</p>
+          <code class="cmd">
+            <span class="prompt">→</span>langfuse.tifinrm.com/trace/6dd56bd9ba83eaf606838e4ca17ea942
+          </code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 06 HOW TO INSTRUMENT ──────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 06</span> &nbsp;— Instrumentation API</span>
+      <span>4 Primitives</span>
+    </div>
+    <h2 class="sec-title">Thin API. Low friction. <em>Just decorate.</em></h2>
+
+    <div class="two-col">
+      <!-- @logged_node -->
+      <div class="code-section">
+        <div class="code-title">
+          <span class="accent">@logged_node</span>
+          <span>— New LangGraph node (cortex)</span>
+        </div>
+        <div class="code-block">
+<span class="c-kw">from</span> app.observability.events <span class="c-kw">import</span> logged_node
+
+<span class="c-cm"># Works on both async and sync nodes.</span>
+<span class="c-cm"># graph= defaults to workflow in tracing context</span>
+<span class="c-cm"># (leave it out on shared nodes used across graphs).</span>
+<span class="c-dec">@logged_node</span>(graph=<span class="c-str">"ipd_report"</span>, phase=<span class="c-str">"my_phase"</span>)
+<span class="c-kw">async def</span> <span class="c-fn">my_new_node</span>(state: IPDReportState, config) -> dict:
+    <span class="c-cm"># node.enter emitted automatically</span>
+    result = <span class="c-kw">await</span> do_work(state)
+    <span class="c-cm"># node.exit emitted with duration_ms</span>
+    <span class="c-kw">return</span> result
+    <span class="c-cm"># on exception: error event emitted, then re-raised</span>
+        </div>
+      </div>
+
+      <!-- log_checkpoint -->
+      <div class="code-section">
+        <div class="code-title">
+          <span class="accent">log_checkpoint()</span>
+          <span>— Mid-execution step (fin)</span>
+        </div>
+        <div class="code-block">
+<span class="c-kw">from</span> app.common.events <span class="c-kw">import</span> log_checkpoint
+
+<span class="c-kw">async def</span> <span class="c-fn">get_new_tool</span>(<span class="c-kw">self</span>, request: Request) -> Envelope:
+    <span class="c-cm"># Before each meaningful step — keep calls sparse.</span>
+    <span class="c-cm"># Only at steps where a failure would leave you guessing.</span>
+    log_checkpoint(<span class="c-str">"querying_redshift"</span>,
+                   schema=schema, timeframes=timeframes)
+    rows = <span class="c-kw">await</span> fetch_from_redshift(...)
+
+    log_checkpoint(<span class="c-str">"redshift_fetched"</span>, rows=len(rows))
+    result = compute_xirr(rows)
+    <span class="c-kw">return</span> build_envelope(result)
+        </div>
+      </div>
+
+      <!-- logged_span -->
+      <div class="code-section">
+        <div class="code-title">
+          <span class="accent">logged_span()</span>
+          <span>— Sync sub-operation (cortex)</span>
+        </div>
+        <div class="code-block">
+<span class="c-kw">from</span> app.observability.events <span class="c-kw">import</span> logged_span
+
+<span class="c-cm"># Times a block, emits enter + exit events.</span>
+<span class="c-cm"># Body can contain await — context manager is sync</span>
+<span class="c-cm"># but that's fine inside an async function.</span>
+<span class="c-kw">with</span> logged_span(<span class="c-str">"tool.call"</span>, <span class="c-str">"tool.result"</span>,
+                 tool=<span class="c-str">"parse_ecas"</span>) <span class="c-kw">as</span> span:
+    holdings = parse_ecas_pdf(path)
+    <span class="c-cm"># Enrich the exit event:</span>
+    span.add(pdf_pages=holdings.page_count)
+        </div>
+      </div>
+
+      <!-- llm_counting_span -->
+      <div class="code-section">
+        <div class="code-title">
+          <span class="accent">llm_counting_span</span>
+          <span>— New codeact engine</span>
+        </div>
+        <div class="code-block">
+<span class="c-kw">from</span> app.observability.events <span class="c-kw">import</span> llm_counting_span
+
+<span class="c-dec">@lru_cache</span>(maxsize=<span class="c-num">1</span>)
+<span class="c-kw">def</span> <span class="c-fn">get_engine</span>() -> CodeActEngine:
+    <span class="c-kw">return</span> CodeActEngine(
+        workflow_name=<span class="c-str">"my_workflow"</span>,
+        <span class="c-cm"># Pass llm_counting_span as the context provider.</span>
+        <span class="c-cm"># It wraps each LLM call in a Langfuse span AND</span>
+        <span class="c-cm"># increments acc.llm_calls + tokens in the accumulator.</span>
+        llm_call_context_provider=llm_counting_span,
+        <span class="c-cm"># ... other args</span>
+    )
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 07 REDACTION ──────────────────────────────────────── -->
+  <section>
+    <div class="meta-row">
+      <span><span class="num">// 07</span> &nbsp;— Redaction Policy</span>
+      <span>PII · Financial · LLM</span>
+    </div>
+    <h2 class="sec-title">What stays in logs. What <em>doesn't.</em></h2>
+    <p class="sec-lead">
+      <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">redact_event()</code> runs inside <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">log_event()</code> before JSON serialisation — applied to <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">metadata</code> dicts and <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">error_msg</code>. Policy lives in <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-deep);padding:1px 6px">app/observability/redaction_policy.py</code>.
+    </p>
+
+    <table class="redact-table">
+      <thead>
+        <tr>
+          <th>Data class</th>
+          <th>In stdout events</th>
+          <th>In canonical line</th>
+          <th>In Langfuse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>client_name · pan · folio · email · phone</td>
+          <td><span class="tag-hash">sha256:&lt;16-char prefix&gt;</span> — stable for dedup, not reversible</td>
+          <td><span class="tag-hash">sha256 hash</span></td>
+          <td><span class="tag-lf">Full (access-controlled)</span></td>
+        </tr>
+        <tr>
+          <td>nav_value · market_value · purchase_price · xirr · unrealised_gain</td>
+          <td><span class="tag-drop">[redacted]</span> — financial values dropped</td>
+          <td><span class="tag-ok">Aggregated only (counts)</span></td>
+          <td><span class="tag-lf">Full (access-controlled)</span></td>
+        </tr>
+        <tr>
+          <td>LLM prompts / completions</td>
+          <td><span class="tag-drop">Not logged</span></td>
+          <td><span class="tag-drop">Not logged</span></td>
+          <td><span class="tag-lf">Full — Langfuse is the record</span></td>
+        </tr>
+        <tr>
+          <td>Stack traces</td>
+          <td><span class="tag-ok">Exception class + first line only</span></td>
+          <td><span class="tag-ok">Exception class only</span></td>
+          <td><span class="tag-lf">Full</span></td>
+        </tr>
+        <tr>
+          <td>File paths (S3 URIs only)</td>
+          <td><span class="tag-ok">Full — S3 URIs, no local paths</span></td>
+          <td><span class="tag-ok">Full</span></td>
+          <td><span class="tag-lf">Full</span></td>
+        </tr>
+        <tr>
+          <td>fin tool args (scope, filters, timeframes)</td>
+          <td><span class="tag-ok">Full in metadata.body — scope/filters visible for debugging</span></td>
+          <td><span class="tag-ok">tools_used list only</span></td>
+          <td><span class="tag-lf">Full</span></td>
+        </tr>
+        <tr>
+          <td>Correlation IDs (run_id, request_id, thread_id, user_id, org_id)</td>
+          <td><span class="tag-ok">Full — opaque identifiers by design</span></td>
+          <td><span class="tag-ok">Full</span></td>
+          <td><span class="tag-lf">Full</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:var(--r-4)">
+      <strong>Adding a new field to redact:</strong> edit <code style="font-size:12px;font-family:var(--font-mono)">HASH_FIELDS</code> or <code style="font-size:12px;font-family:var(--font-mono)">DROP_FIELDS</code> in
+      <code style="font-size:12px;font-family:var(--font-mono)">cortex/app/observability/redaction_policy.py</code>. Matching is case-insensitive on the field name.
+      Only fields inside the <code style="font-size:12px;font-family:var(--font-mono)">metadata</code> dict of a log event are inspected — top-level identity fields are never redacted.
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <span>Cortex + Fin · Canonical Logging · 2026-06</span>
+    <span>feat/canonical-logging · MR !106 · MR !26</span>
+  </footer>
+
+</div>
+</body>
+</html>
