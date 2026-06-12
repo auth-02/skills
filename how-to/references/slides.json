@@ -2,10 +2,10 @@
   "out_dir": "/tmp/skills-guide",
   "page": {"width": 1754, "height": 1240},
   "cover": {
-    "eyebrow": "Claude Code &nbsp;·&nbsp; ~/.claude/skills",
+    "eyebrow": "Personal skills &nbsp;·&nbsp; ~/.claude/skills",
     "title": "My Skills",
     "sub": "a field guide — what each one does, and when it fires.",
-    "intro": "Five personal Claude Code skills, mirrored to <code>~/skills</code> and version-controlled. Each is invoked automatically when its trigger appears, or on request by name.",
+    "intro": "Five personal skills, mirrored to <code>~/skills</code> and version-controlled. Each is invoked automatically when its trigger appears, or on request by name.",
     "index": [
       {"n": "// 01", "t": "manifest", "d": "Plan before code; a living task doc."},
       {"n": "// 02", "t": "design", "d": "Editorial-technical frontend aesthetic."},
