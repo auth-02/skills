@@ -44,7 +44,7 @@ Copy from `~/.claude/skills/manifest/templates/<name>.md` when creating the mani
 
 Slug: lowercase, hyphenated, imperative (`ndjson-to-parquet-migration`, `add-sso-login`, `refactor-payment-flow`).
 
-The `tasks/` directory is **gitignored in every `~/tifin/*` sub-repo** — manifests, their `data/`, `artifacts/`, and `runs/` are **local-only** and never committed or pushed. Don't try to `git add` them. (When setting up a brand-new repo, add `tasks/` to its `.gitignore` first.)
+The `tasks/` directory is **gitignored** — manifests, their `data/`, `artifacts/`, and `runs/` are **local-only** and never committed or pushed. Don't try to `git add` them. (When setting up a brand-new repo, add `tasks/` to its `.gitignore` first.)
 
 ## Core principle
 
