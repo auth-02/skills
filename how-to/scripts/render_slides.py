@@ -25,7 +25,7 @@ CONFIG SCHEMA (slides.json)
   "page": {"width": 1754, "height": 1240},     // optional; default A4 landscape @150dpi
   "theme": {"accent": "#C0622A", "bg": "#F4EFE4"},  // optional :root var overrides
   "cover": {                                    // optional; becomes slide0
-    "eyebrow": "CLAUDE CODE  ·  ~/.claude/skills",
+    "eyebrow": "MY PRODUCT  ·  GUIDE",
     "title":   "My Skills",
     "sub":     "a field guide — what each one does.",
     "intro":   "Short paragraph. Inline <code>tags</code> allowed.",
