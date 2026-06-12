@@ -112,11 +112,14 @@ def wrap(text, font, maxw):
 
 
 class Builder:
-    def __init__(self, PW, PH, footer_text, total):
+    def __init__(self, PW, PH, footer_text, total, show_footer=True):
         self.PW, self.PH = PW, PH
         self.footer_text = footer_text
         self.total = total
-        self.card = (MARGIN, MARGIN, PW - MARGIN, PH - 78)
+        self.show_footer = show_footer
+        # When the footer is hidden, let the card use the full bottom margin too.
+        bottom = (PH - 78) if show_footer else (PH - MARGIN)
+        self.card = (MARGIN, MARGIN, PW - MARGIN, bottom)
         self.ffoot = fr(26)
 
     def _base(self):
