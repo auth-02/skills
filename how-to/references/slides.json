@@ -1,0 +1,79 @@
+{
+  "out_dir": "/tmp/skills-guide",
+  "page": {"width": 1754, "height": 1240},
+  "cover": {
+    "eyebrow": "Claude Code &nbsp;·&nbsp; ~/.claude/skills",
+    "title": "My Skills",
+    "sub": "a field guide — what each one does, and when it fires.",
+    "intro": "Five personal Claude Code skills, mirrored to <code>~/skills</code> and version-controlled. Each is invoked automatically when its trigger appears, or on request by name.",
+    "index": [
+      {"n": "// 01", "t": "manifest", "d": "Plan before code; a living task doc."},
+      {"n": "// 02", "t": "design", "d": "Editorial-technical frontend aesthetic."},
+      {"n": "// 03", "t": "stacked", "d": "Decompose into reviewable layers."},
+      {"n": "// 04", "t": "ian-illustrations", "d": "Xiaohei hand-drawn article art."},
+      {"n": "// 05", "t": "cmux", "d": "Drive terminals &amp; browser by CLI."}
+    ]
+  },
+  "slides": [
+    {
+      "tag": "// 01 &nbsp;—&nbsp; PLANNING · PLAN-BEFORE-CODE",
+      "title": "manifest",
+      "lead": "write the plan before the code, then keep it honest.",
+      "counter": "SKILL 1 / 5",
+      "blocks": [
+        {"label": "What it does", "html": "A living markdown doc per non-trivial task at <code>tasks/&lt;slug&gt;/manifest.md</code> — capturing the <strong>problem, decisions, exploration findings, plan, open questions, test &amp; rollout plans, and a final review</strong>. Updated continuously as the work progresses, so the deliverable is the code <em>and</em> the doc that explains it."},
+        {"label": "How to use", "html": "Fires at the <strong>start</strong> of a feature, migration, refactor, or any 3+ step task — &ldquo;build X&rdquo;, &ldquo;migrate X&rdquo;, &ldquo;let&rsquo;s plan&rdquo;. At init it creates <strong>only</strong> <code>manifest.md</code>; <code>data/</code>, <code>artifacts/</code>, <code>runs/</code> are added <em>lazily</em> when first needed. <code>tasks/</code> is gitignored — local-only. <em>Not for</em> typos, one-line fixes, or questions."}
+      ],
+      "foot_left": "~/.claude/skills/manifest",
+      "foot_right": "LIVING TASK MANIFEST"
+    },
+    {
+      "tag": "// 02 &nbsp;—&nbsp; FRONTEND · AESTHETIC",
+      "title": "design",
+      "lead": "paper, not screen. one surgical accent.",
+      "counter": "SKILL 2 / 5",
+      "blocks": [
+        {"label": "What it does", "html": "A personal <strong>editorial-technical</strong> frontend aesthetic: warm paper canvas, a single rust accent, literary serif display paired with monospace metadata, dot-grid texture, and hairline schematic cards. Reads like a typeset spec sheet — and overrides generic AI defaults (Inter-on-white, purple gradients)."},
+        {"label": "How to use", "html": "Applies to <strong>any</strong> UI, page, dashboard, component, mockup, or slide — even when not explicitly invoked. Six commitments: <em>paper not screen · one accent · mono as metadata · italic as emphasis · hairlines not boxes · number everything</em>. Bundled: <code>references/tokens.md</code>, <code>references/components.md</code>, <code>examples/this-style-example.html</code>. <strong>(This guide is rendered in it.)</strong>"}
+      ],
+      "foot_left": "~/.claude/skills/design",
+      "foot_right": "ATHARVA'S DESIGN SYSTEM"
+    },
+    {
+      "tag": "// 03 &nbsp;—&nbsp; DECOMPOSITION · REVIEWABILITY",
+      "title": "stacked",
+      "lead": "small, dependent, independently reviewable.",
+      "counter": "SKILL 3 / 5",
+      "blocks": [
+        {"label": "What it does", "html": "Breaks a large, complex, or risky change into a <strong>stack of small units</strong> — each with one responsibility, each building on the layer below — so every PR answers a single reviewable question instead of arriving as one unreadable diff."},
+        {"label": "How to use", "html": "Fires on build / implement / refactor work that <strong>spans multiple layers</strong> (models, storage, logic, tools, API, UI), or &ldquo;stacked PRs / stack this&rdquo;. Implement <em>bottom-up</em>: one branch &amp; PR per layer, layer N targets layer N&minus;1. Example: <code>examples/orchestrator-front-door.md</code>. Pairs with <strong>manifest</strong>&rsquo;s Stack section."}
+      ],
+      "foot_left": "~/.claude/skills/stacked",
+      "foot_right": "STACKED, REVIEWABLE CHANGES"
+    },
+    {
+      "tag": "// 04 &nbsp;—&nbsp; ILLUSTRATION · XIAOHEI 小黑",
+      "title": "ian-illustrations",
+      "lead": "one image, one idea — hand-drawn.",
+      "counter": "SKILL 4 / 5",
+      "blocks": [
+        {"label": "What it does", "html": "Ian&rsquo;s <strong>Xiaohei (小黑)</strong> illustration system: reads an article&rsquo;s cognitive anchors and turns them into <strong>16:9 hand-drawn image-gen prompts</strong> — pure white background, black line art, sparse English annotations, one accent flow color, the little deadpan creature performing the core action."},
+        {"label": "How to use", "html": "Give it the <strong>article content</strong>. It returns a <em>shot list</em>, then one prompt per illustration (choosing from 8 composition structures), then a QA self-check. Prompts &amp; annotations are always in English. Example: <code>examples/hub-illustrations/</code> — prompts plus four rendered PNGs."}
+      ],
+      "foot_left": "~/.claude/skills/ian-illustrations",
+      "foot_right": "XIAOHEI ARTICLE ILLUSTRATIONS"
+    },
+    {
+      "tag": "// 05 &nbsp;—&nbsp; TERMINAL MULTIPLEXER · AUTOMATION",
+      "title": "cmux",
+      "lead": "drive terminals and the browser by command.",
+      "counter": "SKILL 5 / 5",
+      "blocks": [
+        {"label": "What it does", "html": "Controls the <strong>cmux</strong> terminal multiplexer from its CLI — manage <strong>workspaces, windows, panes, and surfaces</strong>; send input to any terminal; read terminal screens; and drive the integrated <strong>Playwright-style browser</strong> (navigate, click, fill, snapshot, screenshot). The CLI talks to the running app over a Unix socket; anything cmux does is scriptable."},
+        {"label": "How to use", "html": "Fires on any mention of <strong>cmux</strong> — &ldquo;open a workspace&rdquo;, &ldquo;split a pane&rdquo;, &ldquo;read that terminal&rdquo;, &ldquo;send keys to another pane&rdquo;, or automating a browser tab. Inside a cmux terminal it <em>autodiscovers</em> the current workspace/surface/tab, so <code>cmux send &quot;ls&quot;</code> targets the current pane; target elsewhere with a short ref like <code>pane:3</code>. Start with <code>cmux tree --all</code> to inspect the hierarchy."}
+      ],
+      "foot_left": "~/.claude/skills/cmux",
+      "foot_right": "CMUX AUTOMATION"
+    }
+  ]
+}
