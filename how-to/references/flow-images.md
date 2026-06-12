@@ -43,10 +43,10 @@ directly into the styled PDF. Needs Pillow (`python3 -c "import PIL"`; if missin
 ```json
 {
   "output": "My Guide.pdf",
-  "title":  "How to Run a TIFIN RM Client Portfolio Diagnostic",
-  "intro":  "Learn how to access and initiate a comprehensive diagnostic report ...",
-  "eyebrow": "CLIENT DIAGNOSTICS  ·  BETA",
-  "footer": "TIFIN RM  ·  Client Diagnostics (Beta)  —  How to run a client portfolio diagnostic",
+  "title":  "How to Export a Report",
+  "intro":  "Learn how to configure and export a report ...",
+  "eyebrow": "MY PRODUCT  ·  GUIDE",
+  "footer": "ACME  ·  How-to  —  How to export a report",
   "page":   {"width": 1754, "height": 1240},
   "slides": [
     { "image": "step1.png" },
