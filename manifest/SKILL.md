@@ -9,16 +9,16 @@ Every feature gets a **manifest** — a living markdown doc that declares the pr
 
 ## Where the manifest lives
 
-**Always inside the sub-repo being worked on**, at `<repo-root>/tasks/<slug>/manifest.md`. Resolve `<repo-root>` from the current working directory: the first ancestor that is a sub-repo of `~/tifin/` and contains `.git` / `pyproject.toml` / `package.json` / similar (e.g. `~/tifin/cortex`, `~/tifin/ai-chatbot`, `~/tifin/chat-widget`, `~/tifin/cortex-ui`, `~/tifin/web-app`, `~/tifin/user-ms`, `~/tifin/rm-orchestrator`, `~/tifin/report-ui`, `~/tifin/anonymizer`, `~/tifin/ledger`, `~/tifin/fin`).
+**Always inside the repo being worked on**, at `<repo-root>/tasks/<slug>/manifest.md`. Resolve `<repo-root>` from the current working directory: the nearest ancestor that is a repo root (contains `.git` / `pyproject.toml` / `package.json` / similar). In a multi-repo workspace, that is the specific repo the work belongs to — not the workspace root above it.
 
 **Never** write to:
-- `~/tifin/tasks/` — the top-level monorepo `tasks/` is **not** a manifest target. Standup-collection tooling explicitly scans `~/tifin/*/tasks/` (per sub-repo), so a manifest placed at the monorepo root would be invisible to your daily log.
+- The workspace root above any repo. Manifest-collection tooling scans each repo's `tasks/`, so a manifest placed above a repo would be invisible.
 - `~/.claude/` or the skill directory itself.
-- Anywhere outside a sub-repo.
+- Anywhere outside a repo.
 
-If the current working directory is `~/tifin` itself (not inside a sub-repo) and the user hasn't named a target repo, **ask which sub-repo this work belongs to** before creating the file. Don't guess.
+If the current working directory is a multi-repo workspace root (not inside a specific repo) and the user hasn't named a target repo, **ask which repo this work belongs to** before creating the file. Don't guess.
 
-**Why this matters:** tooling that collects manifest docs looks for `manifest.md` files under `~/tifin/*/tasks/**/manifest.md`. A manifest in the wrong location (or named anything other than `manifest.md`) won't be picked up, defeating the proactive-update workflow below.
+**Why this matters:** tooling that collects manifest docs looks for `manifest.md` files under each repo's `tasks/**/manifest.md`. A manifest in the wrong location (or named anything other than `manifest.md`) won't be picked up, defeating the proactive-update workflow below.
 
 Create the `tasks/` directory if it does not exist. **Every task gets its own subfolder.** At init, create **only** `tasks/<slug>/manifest.md` — do **not** pre-create `data/`, `artifacts/`, or `runs/` upfront. Each subdir is created **lazily, only when something actually needs to go in it** (the first data file → `data/`, the first probe note/script → `artifacts/`, the first validation run → `runs/<date>/`). Empty scaffolding directories are noise; a fresh task is just its `manifest.md`.
 
