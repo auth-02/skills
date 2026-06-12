@@ -40,7 +40,7 @@ Working files (HTML, PNGs, configs) live fine in a scratch dir like
   "page": {"width": 1754, "height": 1240},
   "theme": {"accent": "#C0622A", "bg": "#F4EFE4"},
   "cover": {
-    "eyebrow": "CLAUDE CODE  ·  ~/.claude/skills",
+    "eyebrow": "MY PRODUCT  ·  GUIDE",
     "title": "My Skills",
     "sub": "a field guide — what each one does.",
     "intro": "Short paragraph. Inline <code>tags</code> allowed.",
