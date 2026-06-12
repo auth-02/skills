@@ -42,7 +42,7 @@ cmux current-workspace
 ### Create / open
 ```bash
 cmux /path/to/dir                                 # open dir in new workspace
-cmux new-workspace --name "api" --cwd ~/tifin/ai-chatbot --command "make start-server"
+cmux new-workspace --name "api" --cwd ~/code/api --command "make start-server"
 cmux new-window
 cmux new-split right --workspace workspace:1      # split pane to the right
 cmux new-surface --type terminal                  # new tab in current pane
