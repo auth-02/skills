@@ -100,6 +100,41 @@ config lives at `references/guide.json`. Requires Pillow
   `(242,245,249)` strip, a white circle with the bold `number`, and the `label`.
   Use it to make an un-numbered output slide read as the final step.
 
+## No images? Generate the slides from content first
+
+This skill ships images → PDF, but the most common real request is *"make a guide
+of X"* with **no screenshots to work from** (documenting skills, an API, a concept,
+a checklist). Don't refuse and don't fall back to plain text — **render each slide
+yourself, then feed those PNGs to the builder.** The builder still does the cover
+framing, card, border, and counter; you just supply the content slides.
+
+Pipeline that works well:
+
+1. **Gather the content.** Read the real source (files, `SKILL.md`s, docs). One
+   slide per topic; keep each slide to a lead line + 2 short blocks so it breathes.
+2. **Write one HTML file per slide** sized to the page (e.g. `1754×1240`,
+   `html,body{width;height;overflow:hidden}`). Style it deliberately — for the
+   user's own work, **invoke the `design` skill's aesthetic** (cream paper, one
+   rust accent, serif display + mono labels, hairline rules, corner ticks); it
+   makes the guide feel authored and doubles as a demo of that skill. A cover
+   slide + one slide per topic.
+3. **Render each HTML to PNG with headless Chrome** (present on macOS):
+   ```bash
+   CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+   "$CHROME" --headless=new --disable-gpu --hide-scrollbars \
+     --force-device-scale-factor=1 --window-size=1754,1240 \
+     --screenshot="/abs/slideN.png" "file:///abs/slideN.html"
+   ```
+   Chrome fetches Google Fonts when online; always set robust local fallbacks
+   (e.g. `'Fraunces','Georgia',serif`, `'JetBrains Mono','Menlo',monospace`) so it
+   still renders offline. Confirm each PNG is exactly the page size.
+4. **Build with `footer: false`** when your slides already carry their own footer —
+   otherwise you get a redundant second footer band. Then verify as usual
+   (render a page from the PDF and Read it).
+
+Working files (HTML, PNGs, `guide.json`) live fine in a scratch dir like
+`/tmp/<name>-guide/`; only the final PDF needs a real home.
+
 ## finding patch / header coordinates
 
 Coordinates are pixels in the **original image**. To find them, crop the region
