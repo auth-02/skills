@@ -119,3 +119,9 @@ Format: 16:9 horizontal. Style: sketch, eccentric, memorable, hand-drawn product
 **Step 5 — Deliver**
 
 输出完整 shot list + 所有 prompts。建议保存至 `assets/<article-slug>-illustrations/prompts.md`。
+
+---
+
+## Example
+
+`examples/hub-illustrations/` is a complete worked example for the "Hub" project article: the `prompts.md` shot list (4 illustrations — funnel/cross-section/listening/receipt metaphors) plus the four rendered PNGs they produced. Use it to calibrate the level of metaphor invention, annotation density, and how the shot list maps cognitive anchors to the 8 structure types.
