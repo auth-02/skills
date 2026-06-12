@@ -15,15 +15,32 @@ description: >-
   skill's aesthetic), then assemble those into the PDF.
 ---
 
-# how-to — styled guide PDF from images
+# how-to — styled guide PDF
 
-Build a clean, consistent walkthrough PDF from a set of screenshots. Every page
-is the same size with a shadowed white card, a 1px border around the image, and
-a footer slide counter. Page 1 is an optional typeset cover.
+Build a clean, consistent walkthrough PDF. Every page is the same size with a
+shadowed white card, a 1px border around the image, and an optional footer slide
+counter. Page 1 is an optional typeset cover.
 
-The engine is `scripts/build_guide_pdf.py` (uses Python + Pillow). An example
-config lives at `references/guide.json`. Requires Pillow
-(`python3 -c "import PIL"`); if missing, `pip install Pillow`.
+## Two flows — pick by whether the user gave you images
+
+1. **Images provided** (screenshots, exported diagrams) → assemble them directly:
+   `scripts/build_guide_pdf.py`.
+2. **No images** (documenting skills, an API, a concept, a checklist — nothing to
+   screenshot) → first **generate** the slides from content with
+   `scripts/render_slides.py` (styled HTML → PNG via headless Chrome, in the
+   `design` aesthetic by default), then assemble those PNGs with
+   `scripts/build_guide_pdf.py` (usually `"footer": false`, since generated slides
+   carry their own footer).
+
+Both scripts are Python. `build_guide_pdf.py` needs Pillow
+(`python3 -c "import PIL"`; if missing, `pip install Pillow`). `render_slides.py`
+needs headless Chrome (present on macOS at `/Applications/Google Chrome.app`).
+Example configs: `references/guide.json` (assembler) and
+`references/slides.json` (generator).
+
+---
+
+# Flow 1 — images → PDF  (`build_guide_pdf.py`)
 
 ## Workflow
 
