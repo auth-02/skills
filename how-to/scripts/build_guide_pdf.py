@@ -29,7 +29,9 @@ CONFIG SCHEMA (guide.json)
   "title":  "How to Run a TIFIN RM Client Portfolio Diagnostic",
   "intro":  "Learn how to ...",            // omit title+intro to skip the cover page
   "eyebrow": "CLIENT DIAGNOSTICS  ·  BETA",  // optional; shown above the title
-  "footer": "TIFIN RM  ·  Client Diagnostics (Beta)",
+  "footer": "TIFIN RM  ·  Client Diagnostics (Beta)",  // string = caption+counter;
+                                                        // "" = counter only; false = no footer band
+
   "page":   {"width": 1754, "height": 1240},  // optional; default A4 landscape @150dpi
   "slides": [
     {"image": "step1.png"},
