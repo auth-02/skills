@@ -42,7 +42,7 @@ CONFIG SCHEMA (guide.json)
        ]
     },
     {"image": "result.png",
-       "header": {"number": 8, "label": "Review your Client Diagnostics result"}
+       "header": {"number": 8, "label": "Review your result"}
     }
   ]
 }
