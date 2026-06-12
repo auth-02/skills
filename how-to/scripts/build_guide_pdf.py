@@ -3,7 +3,7 @@
 build_guide_pdf.py — turn a sequence of screenshots into a polished, uniform
 "how-to guide" PDF.
 
-Style (matches the TIFIN RM Client Diagnostics guide):
+Style:
   * Typeset cover page  : indigo eyebrow + accent rule, big bold title, gray intro.
   * Every content page  : soft gray background, centered WHITE rounded card with a
                           subtle drop shadow + 1px border, image fit inside with padding.
