@@ -103,7 +103,7 @@ def count_slides(html_path: Path) -> int:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="the user-design HTML → print-clean PDF")
+    ap = argparse.ArgumentParser(description="kagaz HTML → print-clean PDF")
     ap.add_argument("input", help="input .html")
     ap.add_argument("output", help="output .pdf")
     ap.add_argument("--qa-dir", default=None, help="where to write QA page PNGs")
