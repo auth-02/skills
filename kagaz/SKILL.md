@@ -162,7 +162,7 @@ Keep motion **restrained**. The aesthetic is paper, and paper doesn't bounce. Us
 3. **Confirm the type stack** — Fraunces by default unless a serif swap is more appropriate.
 4. **Sketch the section structure with mono meta-rows and numbered indices** — this is what makes the work feel intentional, not generic.
 5. **Build with the invariants as a checklist** — before finishing, verify each of the eight is honored (or that any break was deliberate).
-6. **Reference `examples/smfs-style-example.html`** for proportions, spacing rhythm, component patterns, and detail-handling — but don't lift content or structure wholesale. It's an example, not a template.
+6. **Reference `examples/kagaz-showcase.html`** for proportions, spacing rhythm, component patterns, and detail-handling — but don't lift content or structure wholesale. It's an example, not a template.
 
 ## Bundled references
 
