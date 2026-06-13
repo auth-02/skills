@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-html_to_pdf.py — Convert an the user-design HTML artifact to a print-clean PDF.
+html_to_pdf.py — Convert a kagaz HTML artifact to a print-clean PDF.
 
 What it does, in order:
   1. Ensures the brand fonts (Fraunces, Inter, JetBrains Mono) are installed so
