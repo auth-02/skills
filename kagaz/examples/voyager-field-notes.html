@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Grand Tour — Voyager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:#F4EFE4; --bg-alt:#ECE5D2; --bg-deep:#E4DCC4;
+    --ink:#1A1A1A; --ink-soft:#3A352D; --ink-mute:#8A8377; --line:#D9D1BC;
+    --accent:#C0622A; --accent-soft:#E89A6B; --accent-deep:#8A4218;
+    --font-display:'Fraunces','Times New Roman',serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+    --r-2:8px; --r-3:16px; --r-4:24px; --r-5:40px; --r-6:64px; --r-7:96px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font-body);
+    font-size:15px; line-height:1.55;
+    background-image:radial-gradient(circle,#C9BFA3 0.7px,transparent 0.7px);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:var(--r-5) var(--r-4);}
+  section{padding:var(--r-7) 0;border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+
+  /* header */
+  header.top{border-bottom:1px solid var(--line);background:rgba(244,239,228,.85);backdrop-filter:blur(6px);position:sticky;top:0;z-index:50;}
+  header.top .wrap{padding:var(--r-3) var(--r-4);display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;}
+  .logo .star{color:var(--accent);margin-right:7px;}
+  .logo small{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;color:var(--ink-mute);margin-left:12px;}
+  nav.top-nav{display:flex;gap:var(--r-4);}
+  nav.top-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color 160ms;}
+  nav.top-nav a:hover{color:var(--accent);}
+
+  .meta-row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:var(--r-3);font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mute);}
+
+  /* hero */
+  .hero h1{font-family:var(--font-display);font-weight:500;font-size:clamp(46px,7.5vw,92px);line-height:.97;letter-spacing:-.035em;margin-bottom:var(--r-4);}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:500;}
+  .hero .lede{font-size:18px;max-width:600px;color:var(--ink-soft);margin-bottom:var(--r-5);}
+  .label{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:var(--r-3);}
+  .label.accent{color:var(--accent);}
+
+  .sec-title{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,4.2vw,46px);line-height:1.05;letter-spacing:-.025em;margin-bottom:var(--r-3);max-width:760px;}
+  .sec-title em{font-style:italic;color:var(--accent);}
+  .lede-sm{font-size:16px;color:var(--ink-soft);max-width:640px;margin-bottom:var(--r-5);}
+
+  /* glance grid */
+  .glance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--r-4);}
+  .glance-grid{break-inside:avoid;}
+  .glance-cell{padding:12px 0 10px 14px;border-left:2px solid var(--accent);break-inside:avoid;}
+  .glance-label{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;}
+  .glance-value{font-family:var(--font-display);font-size:38px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.05;margin-top:4px;}
+  .glance-note{font-size:13px;color:var(--ink-soft);line-height:1.4;margin-top:5px;}
+
+  /* chart panel */
+  .chart-panel{background:var(--bg-alt);border:1px solid var(--line);padding:var(--r-5);position:relative;}
+  .chart-panel::before{content:'';position:absolute;top:-1px;left:-1px;width:12px;height:12px;border-top:1px solid var(--accent);border-left:1px solid var(--accent);}
+  .chart-panel::after{content:'';position:absolute;bottom:-1px;right:-1px;width:12px;height:12px;border-bottom:1px solid var(--accent);border-right:1px solid var(--accent);}
+  .chart-legend{display:flex;gap:var(--r-4);margin-top:var(--r-3);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--ink-soft);}
+  .chart-legend .key{display:inline-block;width:14px;height:3px;margin-right:7px;vertical-align:middle;}
+
+  /* schematic cards */
+  .components{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--r-4);}
+  .card{background:var(--bg-alt);border:1px solid var(--line);padding:var(--r-4);position:relative;transition:box-shadow 200ms;}
+  .card::before{content:'';position:absolute;top:-1px;left:-1px;width:10px;height:10px;border-top:1px solid var(--accent);border-left:1px solid var(--accent);}
+  .card::after{content:'';position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-bottom:1px solid var(--accent);border-right:1px solid var(--accent);}
+  .card:hover{box-shadow:0 4px 24px rgba(0,0,0,.05);}
+  .card .num{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;color:var(--accent);position:absolute;top:var(--r-3);right:var(--r-3);}
+  .card h3{font-family:var(--font-display);font-weight:500;font-size:21px;letter-spacing:-.015em;margin-bottom:8px;padding-right:28px;}
+  .card p{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+  .card .stat{font-family:var(--font-mono);font-size:11px;color:var(--accent-deep);background:var(--bg-deep);padding:3px 8px;display:inline-block;margin-top:var(--r-3);}
+
+  /* editorial dash list (timeline) */
+  ul.dash{list-style:none;padding-left:0;max-width:720px;}
+  ul.dash li{position:relative;padding:14px 0 14px 26px;border-bottom:1px solid var(--line);line-height:1.5;color:var(--ink-soft);}
+  ul.dash li:last-child{border-bottom:none;}
+  ul.dash li::before{content:'';position:absolute;left:0;top:21px;width:10px;height:1.5px;background:var(--accent);}
+  ul.dash li .yr{font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:.05em;margin-right:12px;}
+  ul.dash li strong{color:var(--ink);font-weight:500;}
+
+  /* data table */
+  .data-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--r-3);}
+  .data-table th{text-align:left;font-weight:500;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);padding:10px 12px;border-bottom:1px solid var(--line);}
+  .data-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .data-table td:not(:first-child),.data-table th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;}
+  .data-table .rowlabel{font-family:var(--font-body);color:var(--ink);font-weight:500;}
+
+  /* golden record spec */
+  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .spec-cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--r-4);background:var(--bg);}
+  .spec-cell .si{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;}
+  .spec-cell .sv{font-family:var(--font-display);font-size:26px;font-weight:500;letter-spacing:-.01em;margin:8px 0 4px;}
+  .spec-cell p{font-size:13px;color:var(--ink-soft);line-height:1.45;}
+
+  blockquote{font-family:var(--font-display);font-style:italic;font-size:clamp(22px,3vw,30px);line-height:1.3;color:var(--ink);max-width:780px;border-left:2px solid var(--accent);padding-left:var(--r-4);margin:var(--r-3) 0;}
+  blockquote cite{display:block;font-family:var(--font-mono);font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);margin-top:var(--r-3);}
+
+  .note{font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);line-height:1.6;border-top:1px solid var(--line);padding-top:var(--r-3);margin-top:var(--r-5);}
+
+  footer{border-top:1px solid var(--line);padding:var(--r-5) 0 var(--r-4);margin-top:var(--r-6);background:var(--bg-alt);}
+  footer .foot-grid{display:grid;grid-template-columns:1fr auto;align-items:end;gap:var(--r-4);}
+  footer p{font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);letter-spacing:.08em;}
+  footer .big{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:clamp(54px,10vw,128px);color:var(--accent);line-height:.85;letter-spacing:-.04em;opacity:.8;}
+
+  @media(max-width:760px){.glance-grid{grid-template-columns:1fr 1fr;}.spec-grid{grid-template-columns:1fr;}section{padding:var(--r-5) 0;}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><span class="star">✦</span>VOYAGER <small>// FIELD NOTES</small></div>
+    <nav class="top-nav">
+      <a href="#status">Status</a>
+      <a href="#tour">The tour</a>
+      <a href="#craft">The craft</a>
+      <a href="#record">The record</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="label accent">// Field Notes · No. 01 · Interstellar</span>
+    <h1>Two probes,<br/>forty-eight years,<br/><em>still talking.</em></h1>
+    <p class="lede">Launched in 1977 to tour the outer planets, Voyager 1 and 2 kept going. They are now the most distant human-made objects in existence — small, cold, plutonium-warmed machines whispering back across light-hours of empty space.</p>
+  </div>
+</section>
+
+<!-- STATUS / GLANCE -->
+<section id="status">
+  <div class="wrap">
+    <div class="meta-row"><span>// 01 — Status</span><span>APPROXIMATE · EARLY 2026</span></div>
+    <div class="glance-grid">
+      <div class="glance-cell"><div class="glance-label">V1 DISTANCE</div><div class="glance-value">~167</div><div class="glance-note">AU from the Sun — about 23 light-hours</div></div>
+      <div class="glance-cell"><div class="glance-label">CRUISE SPEED</div><div class="glance-value">~17</div><div class="glance-note">km/s, V1 relative to the Sun</div></div>
+      <div class="glance-cell"><div class="glance-label">MISSION AGE</div><div class="glance-value">48</div><div class="glance-note">years since launch, 1977 → now</div></div>
+      <div class="glance-cell"><div class="glance-label">POWER LEFT</div><div class="glance-value">~30%</div><div class="glance-note">RTG output, fading ~4W per year</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DISTANCE CHART -->
+<section>
+  <div class="wrap">
+    <div class="meta-row"><span>// 02 — Trajectory</span><span>DISTANCE FROM THE SUN</span></div>
+    <h2 class="sec-title">Falling outward, <em>forever.</em></h2>
+    <p class="lede-sm">Neither probe will ever return. With no atmosphere to slow them and no destination to reach, they coast outward at a steady clip — Voyager 1 a little faster, having taken the more aggressive slingshot past Saturn.</p>
+
+    <div class="chart-panel">
+      <svg viewBox="0 0 760 320" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Distance of both Voyager probes from the Sun over time">
+        <!-- gridlines -->
+        <g stroke="#D9D1BC" stroke-width="0.7">
+          <line x1="60" y1="40" x2="730" y2="40"/>
+          <line x1="60" y1="110" x2="730" y2="110"/>
+          <line x1="60" y1="180" x2="730" y2="180"/>
+          <line x1="60" y1="250" x2="730" y2="250"/>
+        </g>
+        <!-- y labels -->
+        <g font-family="JetBrains Mono, monospace" font-size="10" fill="#8A8377">
+          <text x="50" y="44" text-anchor="end">200</text>
+          <text x="50" y="114" text-anchor="end">133</text>
+          <text x="50" y="184" text-anchor="end">67</text>
+          <text x="50" y="254" text-anchor="end">0</text>
+          <text x="60" y="285" text-anchor="middle">1980</text>
+          <text x="194" y="285" text-anchor="middle">1990</text>
+          <text x="328" y="285" text-anchor="middle">2000</text>
+          <text x="462" y="285" text-anchor="middle">2010</text>
+          <text x="596" y="285" text-anchor="middle">2020</text>
+          <text x="730" y="285" text-anchor="middle">2025</text>
+        </g>
+        <!-- heliopause markers -->
+        <line x1="520" y1="40" x2="520" y2="250" stroke="#E89A6B" stroke-width="1" stroke-dasharray="3 4"/>
+        <text x="524" y="54" font-family="JetBrains Mono, monospace" font-size="9" fill="#8A4218">V1 HELIOPAUSE · 2012</text>
+        <!-- Voyager 1 line: y = 250 - (au/200*210) -->
+        <!-- 1980:10 1990:45 2000:80 2010:116 2020:152 2025:167 -->
+        <path d="M 60 239.5 L 194 202.7 L 328 166 L 462 128.2 L 596 90.4 L 730 74.7"
+              fill="none" stroke="#C0622A" stroke-width="2.5"/>
+        <g fill="#C0622A"><circle cx="60" cy="239.5" r="3"/><circle cx="194" cy="202.7" r="3"/><circle cx="328" cy="166" r="3"/><circle cx="462" cy="128.2" r="3"/><circle cx="596" cy="90.4" r="3"/><circle cx="730" cy="74.7" r="3.5"/></g>
+        <!-- Voyager 2 line: 1980:9 1990:38 2000:68 2010:98 2020:128 2025:142 -->
+        <path d="M 60 240.5 L 194 210.1 L 328 178.6 L 462 147.1 L 596 115.6 L 730 100.9"
+              fill="none" stroke="#8A8377" stroke-width="2"/>
+        <g fill="#8A8377"><circle cx="60" cy="240.5" r="2.5"/><circle cx="194" cy="210.1" r="2.5"/><circle cx="328" cy="178.6" r="2.5"/><circle cx="462" cy="147.1" r="2.5"/><circle cx="596" cy="115.6" r="2.5"/><circle cx="730" cy="100.9" r="3"/></g>
+        <text x="14" y="150" font-family="JetBrains Mono, monospace" font-size="9" fill="#8A8377" transform="rotate(-90 14 150)" text-anchor="middle">AU FROM SUN</text>
+      </svg>
+      <div class="chart-legend">
+        <span><span class="key" style="background:#C0622A;"></span>Voyager 1</span>
+        <span><span class="key" style="background:#8A8377;"></span>Voyager 2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE TOUR / TIMELINE -->
+<section id="tour">
+  <div class="wrap">
+    <div class="meta-row"><span>// 03 — The Grand Tour</span><span>A RARE ALIGNMENT</span></div>
+    <h2 class="sec-title">A planetary alignment that <em>comes once in 176 years.</em></h2>
+    <p class="lede-sm">The mission existed because the outer planets happened to line up so a single craft could swing from one to the next, each gravity assist flinging it onward. Miss the window and you'd wait until the 2150s.</p>
+    <ul class="dash">
+      <li><span class="yr">1977</span><strong>Both launch.</strong> Voyager 2 leaves first, on Aug 20; Voyager 1 follows on Sep 5, on a faster track.</li>
+      <li><span class="yr">1979</span><strong>Jupiter.</strong> Active volcanoes found on the moon Io — the first ever seen beyond Earth.</li>
+      <li><span class="yr">1980–81</span><strong>Saturn.</strong> Voyager 1 dives past Titan, bending its path up and out of the planetary plane for good.</li>
+      <li><span class="yr">1986</span><strong>Uranus.</strong> Voyager 2 alone, the only craft ever to visit.</li>
+      <li><span class="yr">1989</span><strong>Neptune.</strong> The last planet. Voyager 2 completes the tour and turns toward deep space.</li>
+      <li><span class="yr">1990</span><strong>The Pale Blue Dot.</strong> Voyager 1 turns back for a final family portrait of the solar system.</li>
+      <li><span class="yr">2012</span><strong>Interstellar.</strong> Voyager 1 crosses the heliopause — the edge of the Sun's bubble.</li>
+      <li><span class="yr">2018</span><strong>Voyager 2 follows</strong> across the heliopause, six years behind its twin.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE CRAFT / COMPARISON -->
+<section id="craft">
+  <div class="wrap">
+    <div class="meta-row"><span>// 04 — The Craft</span><span>TWINS, NOT IDENTICAL</span></div>
+    <h2 class="sec-title">Less computing power than <em>a key fob.</em></h2>
+    <p class="lede-sm">Each probe carries about 70 kilobytes of memory and is warmed by the slow decay of plutonium-238. Engineers now switch instruments off one at a time to stretch the dwindling power budget for a few more years.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Parameter</th><th>Voyager 1</th><th>Voyager 2</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Launched</td><td>Sep 5, 1977</td><td>Aug 20, 1977</td></tr>
+        <tr><td class="rowlabel">Planets visited</td><td>2</td><td>4</td></tr>
+        <tr><td class="rowlabel">Crossed heliopause</td><td>2012</td><td>2018</td></tr>
+        <tr><td class="rowlabel">Speed (km/s)</td><td>~17.0</td><td>~15.4</td></tr>
+        <tr><td class="rowlabel">Distance (AU, approx)</td><td>~167</td><td>~142</td></tr>
+        <tr><td class="rowlabel">One-way signal time</td><td>~23 hr</td><td>~19 hr</td></tr>
+      </tbody>
+    </table>
+
+    <div class="components" style="margin-top:var(--r-5);">
+      <div class="card"><span class="num">A</span><h3>The big dish</h3><p>A 3.7-metre high-gain antenna stays locked on Earth, sending data home at a trickle — a few hundred bits per second.</p><span class="stat">22 W transmitter</span></div>
+      <div class="card"><span class="num">B</span><h3>Nuclear warmth</h3><p>Three radioisotope generators turn the heat of decaying plutonium into electricity. No sunlight reaches this far out.</p><span class="stat">−4 W / year</span></div>
+      <div class="card"><span class="num">C</span><h3>Ancient memory</h3><p>Commands run on 1970s computers with roughly 70 KB of storage — millions of times less than the phone in your pocket.</p><span class="stat">~70 KB</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE RECORD -->
+<section id="record">
+  <div class="wrap">
+    <div class="meta-row"><span>// 05 — The Golden Record</span><span>A MESSAGE IN A BOTTLE</span></div>
+    <h2 class="sec-title">A gold-plated <em>hello,</em> for whoever finds it.</h2>
+    <p class="lede-sm">Bolted to each probe is a phonograph record of copper plated in gold, etched with instructions for playback. It is built to survive a billion years in the vacuum — a portrait of Earth assembled in case anyone, ever, is listening.</p>
+
+    <div class="spec-grid">
+      <div class="spec-cell"><div class="si">Format · 01</div><div class="sv">12-inch disc</div><p>Gold-plated copper, with a cartridge and stylus included. A diagram on the cover shows how to play it.</p></div>
+      <div class="spec-cell"><div class="si">Greetings · 02</div><div class="sv">55 languages</div><p>Spoken hellos from Akkadian to Wu, plus a message from the UN Secretary-General.</p></div>
+      <div class="spec-cell"><div class="si">Images · 03</div><div class="sv">115 photos</div><p>Encoded as audio: anatomy, landscapes, a supermarket, a nursing mother, the structure of DNA.</p></div>
+      <div class="spec-cell"><div class="si">Music · 04</div><div class="sv">90 minutes</div><p>Bach and Chuck Berry, Javanese gamelan, a Navajo night chant, a Bulgarian shepherdess.</p></div>
+    </div>
+
+    <blockquote style="margin-top:var(--r-6);">
+      This is a present from a small, distant world, a token of our sounds, our science, our images, our music, our thoughts and our feelings.
+      <cite>— Carter's message, etched aboard · 1977</cite>
+    </blockquote>
+
+    <p class="note">
+      // Field note: figures here are approximate and rounded for legibility. Live telemetry — exact distance, speed, and remaining power — drifts daily and is best taken from NASA's Voyager mission status page rather than this document. I don't have live access and some current numbers may be out of date.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p>// field notes · no. 01 · designed with the atharva-design system</p>
+        <p style="margin-top:8px;color:var(--ink-mute);">SIGNAL.LOCK // OK</p>
+      </div>
+      <div class="big">vgr.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
