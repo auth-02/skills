@@ -157,7 +157,7 @@ Keep motion **restrained**. The aesthetic is paper, and paper doesn't bounce. Us
 
 ## Workflow when generating a design
 
-1. **Read the request and identify the form** — landing page? dashboard? component? Adapt the principles to the form; don't force every design to look like the smfs example.
+1. **Read the request and identify the form** — landing page? dashboard? component? Adapt the principles to the form; don't force every design to look like the showcase example.
 2. **Pick the accent mood** — rust by default. Only swap if the project context strongly suggests otherwise (e.g., a healthcare tool might lean moss or sea).
 3. **Confirm the type stack** — Fraunces by default unless a serif swap is more appropriate.
 4. **Sketch the section structure with mono meta-rows and numbered indices** — this is what makes the work feel intentional, not generic.
