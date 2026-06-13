@@ -7,7 +7,7 @@ description: Kagaz (कागज़) — a personal frontend and document design
 
 A reference aesthetic for any frontend work. The look is editorial-technical: warm paper canvas, surgical rust accent, literary serif display paired with mono metadata, hairline-bounded schematic cards. It reads like a well-typeset technical manual or an archival spec sheet, not a SaaS landing page.
 
-This skill describes the **taste**, not a fixed template. Apply it to whatever you're building — a landing page, a dashboard, a docs site, an internal tool, a presentation — and adapt the principles to fit. The smfs.ai-derived example in `examples/smfs-style-example.html` shows one full execution; reference it for proportions, spacing, and detail handling, but don't copy it wholesale.
+This skill describes the **taste**, not a fixed template. Apply it to whatever you're building — a landing page, a dashboard, a docs site, an internal tool, a presentation — and adapt the principles to fit. The example in `examples/kagaz-showcase.html` shows one full execution; reference it for proportions, spacing, and detail handling, but don't copy it wholesale.
 
 ## When to use
 
