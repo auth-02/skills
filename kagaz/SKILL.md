@@ -182,7 +182,7 @@ Keep motion **restrained**. The aesthetic is paper, and paper doesn't bounce. Us
 
 This skill produces PDFs that fully support **tables** (financial/striped, with tabular figures and accent total rows), **all the signature UI elements** (cards, terminals, glance grids, badges, corner ticks), and **charts via inline SVG**. It does **not** support JavaScript-driven charts (Chart.js, D3, `<canvas>`) — convert those to inline SVG with `charts.py`. See the support matrix at the end of `print.md`.
 
-It also produces **slide decks as PDF** — one slide per page, 16:9 landscape, presenter-ready. The mechanics differ from documents (fixed-size slides, not flowing content), so read `references/slides.md` and start from `examples/slide-deck-example.html`. Render with `--slides` to verify continuity. Note this is a *fixed* PDF deck, not an editable `.pptx`; for editable slides use the pptx skill while keeping this design system's palette and type.
+It also produces **slide decks as PDF** — one slide per page, 16:9 landscape, presenter-ready. The mechanics differ from documents (fixed-size slides, not flowing content), so read `references/slides.md` for the full slide-as-page geometry. Render with `--slides` to verify continuity. Note this is a *fixed* PDF deck, not an editable `.pptx`; for editable slides use the pptx skill while keeping this design system's palette and type.
 
 ## A note on adapting to context
 
