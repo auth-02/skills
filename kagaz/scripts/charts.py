@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-charts.py — Generate on-brand inline SVG charts for the user-design PDFs.
+charts.py — Generate on-brand inline SVG charts for kagaz PDFs.
 
 WeasyPrint does not run JavaScript, so Chart.js / D3 / <canvas> render blank.
 These functions return SVG strings you embed directly in the HTML before
