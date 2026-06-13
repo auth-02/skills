@@ -1,0 +1,14 @@
+{
+  "output": "/Users/user/skills/My Skills.pdf",
+  "footer": false,
+  "page": {"width": 1754, "height": 1240},
+  "slides": [
+    { "image": "slide0.png" },
+    { "image": "slide1.png" },
+    { "image": "slide2.png" },
+    { "image": "slide3.png" },
+    { "image": "slide4.png" },
+    { "image": "slide5.png" },
+    { "image": "slide6.png" }
+  ]
+}
