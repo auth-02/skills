@@ -6,19 +6,19 @@
     "eyebrow": "Personal skills &nbsp;·&nbsp; ~/.claude/skills",
     "title": "My Skills",
     "sub": "a field guide — what each one does, and when it fires.",
-    "intro": "Six personal skills, mirrored to <code>~/skills</code> and version-controlled. Each is invoked automatically when its trigger appears, or on request by name.",
+    "intro": "Six personal skills, mirrored to <code>~/skills</code> and version-controlled. Ordered as a project flows — plan, build, run, then design, document, illustrate. Each is invoked automatically when its trigger appears, or on request by name.",
     "index": [
       {"n": "// 01", "t": "manifest", "d": "Plan before code; a living task doc."},
-      {"n": "// 02", "t": "kagaz", "d": "Editorial-technical design + PDF system."},
-      {"n": "// 03", "t": "stacked", "d": "Decompose into reviewable layers."},
-      {"n": "// 04", "t": "ian-illustrations", "d": "Xiaohei hand-drawn article art."},
-      {"n": "// 05", "t": "cmux", "d": "Drive terminals &amp; browser by CLI."},
-      {"n": "// 06", "t": "how-to", "d": "Styled walkthrough guide PDFs."}
+      {"n": "// 02", "t": "stacked", "d": "Decompose into reviewable layers."},
+      {"n": "// 03", "t": "cmux", "d": "Drive terminals &amp; browser by CLI."},
+      {"n": "// 04", "t": "kagaz", "d": "Editorial-technical design + PDF system."},
+      {"n": "// 05", "t": "how-to", "d": "Styled walkthrough guide PDFs."},
+      {"n": "// 06", "t": "ian-illustrations", "d": "Xiaohei hand-drawn article art."}
     ]
   },
   "slides": [
     {
-      "tag": "// 01 &nbsp;—&nbsp; PLANNING · PLAN-BEFORE-CODE",
+      "tag": "// 01 &nbsp;—&nbsp; PLAN · PLAN-BEFORE-CODE",
       "title": "manifest",
       "lead": "write the plan before the code, then keep it honest.",
       "counter": "SKILL 1 / 6",
@@ -30,22 +30,10 @@
       "foot_right": "LIVING TASK MANIFEST"
     },
     {
-      "tag": "// 02 &nbsp;—&nbsp; DESIGN · AESTHETIC + PDF",
-      "title": "kagaz",
-      "lead": "paper, not screen. one surgical accent.",
-      "counter": "SKILL 2 / 6",
-      "blocks": [
-        {"label": "What it does", "html": "<strong>Kagaz</strong> (कागज़) — a personal <strong>editorial-technical</strong> design system: warm paper canvas, a single rust accent under 5% of surface, literary serif display paired with monospace metadata, dot-grid texture, and hairline schematic cards. Reads like a typeset spec sheet, not a SaaS page. Ships a reliable <strong>HTML&rarr;PDF converter</strong> with visual QA, plus on-brand SVG charts."},
-        {"label": "How to use", "html": "Applies to <strong>any</strong> UI, page, dashboard, component, poster, slide deck, report, or PDF — even when not explicitly invoked. Eight invariants: <em>paper not screen · one accent · warm neutrals · mono as metadata · italic not bold · hairlines not shadows · number everything · one density</em>. Bundled: <code>references/</code> (tokens, components, print, slides), <code>scripts/</code> (<code>html_to_pdf.py</code>, <code>charts.py</code>), brand fonts. <strong>(This guide is rendered in it.)</strong>"}
-      ],
-      "foot_left": "~/.claude/skills/kagaz",
-      "foot_right": "KAGAZ DESIGN SYSTEM"
-    },
-    {
-      "tag": "// 03 &nbsp;—&nbsp; DECOMPOSITION · REVIEWABILITY",
+      "tag": "// 02 &nbsp;—&nbsp; BUILD · DECOMPOSITION · REVIEWABILITY",
       "title": "stacked",
       "lead": "small, dependent, independently reviewable.",
-      "counter": "SKILL 3 / 6",
+      "counter": "SKILL 2 / 6",
       "blocks": [
         {"label": "What it does", "html": "Breaks a large, complex, or risky change into a <strong>stack of small units</strong> — each with one responsibility, each building on the layer below — so every PR answers a single reviewable question instead of arriving as one unreadable diff."},
         {"label": "How to use", "html": "Fires on build / implement / refactor work that <strong>spans multiple layers</strong> (models, storage, logic, tools, API, UI), or &ldquo;stacked PRs / stack this&rdquo;. Implement <em>bottom-up</em>: one branch &amp; PR per layer, layer N targets layer N&minus;1. Example: <code>examples/notifications-system.md</code>. Pairs with <strong>manifest</strong>&rsquo;s Stack section."}
@@ -54,22 +42,10 @@
       "foot_right": "STACKED, REVIEWABLE CHANGES"
     },
     {
-      "tag": "// 04 &nbsp;—&nbsp; ILLUSTRATION · XIAOHEI 小黑",
-      "title": "ian-illustrations",
-      "lead": "one image, one idea — hand-drawn.",
-      "counter": "SKILL 4 / 6",
-      "blocks": [
-        {"label": "What it does", "html": "Ian&rsquo;s <strong>Xiaohei (小黑)</strong> illustration system: reads an article&rsquo;s cognitive anchors and turns them into <strong>16:9 hand-drawn image-gen prompts</strong> — pure white background, black line art, sparse English annotations, one accent flow color, the little deadpan creature performing the core action."},
-        {"label": "How to use", "html": "Give it the <strong>article content</strong>. It returns a <em>shot list</em>, then one prompt per illustration (choosing from 8 composition structures), then a QA self-check. Prompts &amp; annotations are always in English. Example: <code>examples/prompts.md</code> — shot list, prompts, and four rendered illustrations."}
-      ],
-      "foot_left": "~/.claude/skills/ian-illustrations",
-      "foot_right": "XIAOHEI ARTICLE ILLUSTRATIONS"
-    },
-    {
-      "tag": "// 05 &nbsp;—&nbsp; TERMINAL MULTIPLEXER · AUTOMATION",
+      "tag": "// 03 &nbsp;—&nbsp; RUN · TERMINAL MULTIPLEXER · AUTOMATION",
       "title": "cmux",
       "lead": "drive terminals and the browser by command.",
-      "counter": "SKILL 5 / 6",
+      "counter": "SKILL 3 / 6",
       "blocks": [
         {"label": "What it does", "html": "Controls the <strong>cmux</strong> terminal multiplexer from its CLI — manage <strong>workspaces, windows, panes, and surfaces</strong>; send input to any terminal; read terminal screens; and drive the integrated <strong>Playwright-style browser</strong> (navigate, click, fill, snapshot, screenshot). The CLI talks to the running app over a Unix socket; anything cmux does is scriptable."},
         {"label": "How to use", "html": "Fires on any mention of <strong>cmux</strong> — &ldquo;open a workspace&rdquo;, &ldquo;split a pane&rdquo;, &ldquo;read that terminal&rdquo;, &ldquo;send keys to another pane&rdquo;, or automating a browser tab. Inside a cmux terminal it <em>autodiscovers</em> the current workspace/surface/tab, so <code>cmux send &quot;ls&quot;</code> targets the current pane; target elsewhere with a short ref like <code>pane:3</code>. Start with <code>cmux tree --all</code> to inspect the hierarchy."}
@@ -78,16 +54,40 @@
       "foot_right": "CMUX AUTOMATION"
     },
     {
-      "tag": "// 06 &nbsp;—&nbsp; DOCUMENTATION · GUIDE PDFS",
+      "tag": "// 04 &nbsp;—&nbsp; DESIGN · AESTHETIC + PDF",
+      "title": "kagaz",
+      "lead": "paper, not screen. one surgical accent.",
+      "counter": "SKILL 4 / 6",
+      "blocks": [
+        {"label": "What it does", "html": "<strong>Kagaz</strong> (कागज़) — a personal <strong>editorial-technical</strong> design system: warm paper canvas, a single rust accent under 5% of surface, literary serif display paired with monospace metadata, dot-grid texture, and hairline schematic cards. Reads like a typeset spec sheet, not a SaaS page. Ships a reliable <strong>HTML&rarr;PDF converter</strong> with visual QA, plus on-brand SVG charts."},
+        {"label": "How to use", "html": "Applies to <strong>any</strong> UI, page, dashboard, component, poster, slide deck, report, or PDF — even when not explicitly invoked. Eight invariants: <em>paper not screen · one accent · warm neutrals · mono as metadata · italic not bold · hairlines not shadows · number everything · one density</em>. Bundled: <code>references/</code> (tokens, components, print, slides), <code>scripts/</code> (<code>html_to_pdf.py</code>, <code>charts.py</code>), brand fonts. <strong>(This guide is rendered in it.)</strong>"}
+      ],
+      "foot_left": "~/.claude/skills/kagaz",
+      "foot_right": "KAGAZ DESIGN SYSTEM"
+    },
+    {
+      "tag": "// 05 &nbsp;—&nbsp; DOCUMENT · GUIDE PDFS",
       "title": "how-to",
       "lead": "screenshots or content — into a polished guide.",
-      "counter": "SKILL 6 / 6",
+      "counter": "SKILL 5 / 6",
       "blocks": [
         {"label": "What it does", "html": "Builds a clean, uniform walkthrough <strong>PDF</strong>: a typeset cover, every image on a shadowed white card with a 1px border, optional numbered step headers, UI patch-outs (logos, controls), and an optional slide counter. One consistent look, every page."},
         {"label": "How to use", "html": "<strong>Two flows</strong>, by progressive disclosure. <em>Images provided</em> → assemble them (<code>build_guide_pdf.py</code>). <em>No images</em> → first generate styled slides from a content config (<code>render_slides.py</code>, in the kagaz aesthetic), then assemble. Pick the flow; read its reference file. <strong>(This guide was built with it.)</strong>"}
       ],
       "foot_left": "~/.claude/skills/how-to",
       "foot_right": "STYLED GUIDE PDFS"
+    },
+    {
+      "tag": "// 06 &nbsp;—&nbsp; ILLUSTRATE · XIAOHEI 小黑",
+      "title": "ian-illustrations",
+      "lead": "one image, one idea — hand-drawn.",
+      "counter": "SKILL 6 / 6",
+      "blocks": [
+        {"label": "What it does", "html": "Ian&rsquo;s <strong>Xiaohei (小黑)</strong> illustration system: reads an article&rsquo;s cognitive anchors and turns them into <strong>16:9 hand-drawn image-gen prompts</strong> — pure white background, black line art, sparse English annotations, one accent flow color, the little deadpan creature performing the core action."},
+        {"label": "How to use", "html": "Give it the <strong>article content</strong>. It returns a <em>shot list</em>, then one prompt per illustration (choosing from 8 composition structures), then a QA self-check. Prompts &amp; annotations are always in English. Example: <code>examples/prompts.md</code> — shot list, prompts, and four rendered illustrations."}
+      ],
+      "foot_left": "~/.claude/skills/ian-illustrations",
+      "foot_right": "XIAOHEI ARTICLE ILLUSTRATIONS"
     }
   ]
 }
