@@ -26,7 +26,7 @@ Create the `tasks/` directory if it does not exist. **Every task gets its own su
 <repo-root>/tasks/
 └── <slug>/
     ├── manifest.md      # the living manifest          (template: templates/manifest.md)
-    ├── data/            # source data + documents: PDFs, Excel, CSVs, datasets, JSON inputs
+    ├── data/            # referenced/source inputs only: PDFs, Excel, CSVs, datasets, JSON
     ├── artifacts/       # inspection notes, scripts,   (template: templates/inspection.md)
     │                    # probe outputs
     └── runs/            # dated outputs from actual test/validation runs
