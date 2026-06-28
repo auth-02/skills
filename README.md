@@ -1,9 +1,8 @@
 # skills
 
-Personal [Claude Code](https://claude.com/claude-code) skills, mirrored to
-`~/.claude/skills` and version-controlled. Each is invoked automatically when its
-trigger appears, or on request by name. Ordered as a project flows — **plan,
-build, run, design, then share, document, and illustrate.**
+A collection of skills, mirrored to `~/skills` and version-controlled. Each is
+invoked automatically when its trigger appears, or on request by name. Ordered as
+a project flows — **plan, build, run, design, then share, document, and illustrate.**
 
 | # | Skill | Does | When it fires |
 |---|-------|------|---------------|
@@ -15,18 +14,18 @@ build, run, design, then share, document, and illustrate.**
 | 06 | [how-to](how-to) | Styled walkthrough guide PDFs. | Turning screenshots or content into a guide. |
 | 07 | [ian-illustrations](ian-illustrations) | Xiaohei hand-drawn article art. | Generating illustrations from article content. |
 
-## Field guide
+## The guide
 
-A typeset, one-page-per-skill PDF lives in [`colophon/`](colophon) —
-the visual companion to this table, built with **how-to** and rendered in
-**kagaz**. See its [colophon](colophon/COLOPHON.md) to regenerate or extend it.
+A typeset, one-page-per-skill PDF lives in [`colophon/`](colophon) — the visual
+companion to this table, built with **how-to** and rendered in **kagaz**. See its
+[colophon](colophon/COLOPHON.md) to regenerate or extend it.
 
 ## Layout
 
 ```
 skills/
 ├── <skill>/            # SKILL.md + references/ scripts/ examples/
-└── colophon/           # My Skills.pdf — the meta-artifact + how it's made
+└── colophon/           # My Skills.pdf — the guide + how it's made
 ```
 
 Each skill folder carries a `SKILL.md` (its trigger + instructions) and, as

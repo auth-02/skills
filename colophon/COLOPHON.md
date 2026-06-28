@@ -1,4 +1,4 @@
-# Colophon — My Skills field guide
+# Colophon — My Skills
 
 > *a field guide — what each one does, and when it fires.*
 
@@ -18,8 +18,8 @@ Built with the **how-to** skill (Flow 2 — content → slides), rendered in the
 **kagaz** aesthetic. Two steps: render the slides, then bind them.
 
 ```bash
-python3 ~/.claude/skills/how-to/scripts/render_slides.py  --config "colophon/My Skills.slides.json"
-python3 ~/.claude/skills/how-to/scripts/build_guide_pdf.py --config "colophon/My Skills.guide.json"
+python3 how-to/scripts/render_slides.py  --config "colophon/My Skills.slides.json"
+python3 how-to/scripts/build_guide_pdf.py --config "colophon/My Skills.guide.json"
 ```
 
 ## Add a skill
