@@ -1,12 +1,12 @@
-# My Skills — field guide
+# Colophon — My Skills field guide
 
 > *a field guide — what each one does, and when it fires.*
 
-A one-page-per-skill PDF for the seven skills in this repo. Not a skill itself —
-the meta-artifact that documents the rest.
+How this artifact is made and maintained. A one-page-per-skill PDF for the seven
+skills in this repo — not a skill itself, the meta-artifact that documents the rest.
 
 ```
-field-guide/
+colophon/
 ├── My Skills.pdf            ← the deliverable (open this)
 ├── My Skills.slides.json    ← content · source of truth, edit this
 └── My Skills.guide.json     ← assembler · lists the rendered pages
@@ -18,8 +18,8 @@ Built with the **how-to** skill (Flow 2 — content → slides), rendered in the
 **kagaz** aesthetic. Two steps: render the slides, then bind them.
 
 ```bash
-python3 ~/.claude/skills/how-to/scripts/render_slides.py  --config "field-guide/My Skills.slides.json"
-python3 ~/.claude/skills/how-to/scripts/build_guide_pdf.py --config "field-guide/My Skills.guide.json"
+python3 ~/.claude/skills/how-to/scripts/render_slides.py  --config "colophon/My Skills.slides.json"
+python3 ~/.claude/skills/how-to/scripts/build_guide_pdf.py --config "colophon/My Skills.guide.json"
 ```
 
 ## Add a skill
