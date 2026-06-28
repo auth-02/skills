@@ -1,6 +1,6 @@
 # Colophon — My Skills
 
-> *a field guide — what each one does, and when it fires.*
+> *what each one does, and when it fires.*
 
 How this artifact is made and maintained. A one-page-per-skill PDF for the seven
 skills in this repo — not a skill itself, the meta-artifact that documents the rest.

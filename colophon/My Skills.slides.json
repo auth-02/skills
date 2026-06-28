@@ -5,7 +5,7 @@
   "cover": {
     "eyebrow": "Personal skills &nbsp;·&nbsp; ~/skills",
     "title": "My Skills",
-    "sub": "a field guide — what each one does, and when it fires.",
+    "sub": "what each one does, and when it fires.",
     "intro": "Seven personal skills, mirrored to <code>~/skills</code> and version-controlled. Ordered as a project flows — plan, build, run, design, then share, document, and illustrate. Each is invoked automatically when its trigger appears, or on request by name.",
     "index": [
       {"n": "// 01", "t": "manifest", "d": "Plan before code; a living task doc."},
