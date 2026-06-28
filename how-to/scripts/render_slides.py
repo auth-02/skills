@@ -41,7 +41,7 @@ CONFIG SCHEMA (slides.json)
         {"label": "What it does", "html": "A living markdown doc ... <code>x</code>."},
         {"label": "How to use",   "html": "Fires at the <strong>start</strong> ..."}
       ],
-      "foot_left":  "~/.claude/skills/manifest", // optional footer, lower-left
+      "foot_left":  "~/skills/manifest", // optional footer, lower-left
       "foot_right": "LIVING TASK MANIFEST"       // optional footer, lower-right
     }
   ]

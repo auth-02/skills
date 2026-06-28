@@ -12,7 +12,7 @@ Chrome (macOS: `/Applications/Google Chrome.app`) plus Pillow for the assemble s
 
 2. **Write a content config** `slides.json` (schema below) and render it:
    ```bash
-   python3 ~/.claude/skills/how-to/scripts/render_slides.py --config /abs/slides.json
+   python3 ~/skills/how-to/scripts/render_slides.py --config /abs/slides.json
    ```
    This writes `slide0.png` (cover, if present) + `slide1.png …` to `out_dir`, in
    the `design` skill's aesthetic by default (warm paper, one rust accent, serif
@@ -24,7 +24,7 @@ Chrome (macOS: `/Applications/Google Chrome.app`) plus Pillow for the assemble s
    `references/flow-images.md`), using **`"footer": false`** — the generated slides
    already carry their own footer, so the builder's footer would be redundant:
    ```bash
-   python3 ~/.claude/skills/how-to/scripts/build_guide_pdf.py --config /abs/guide.json
+   python3 ~/skills/how-to/scripts/build_guide_pdf.py --config /abs/guide.json
    ```
    The `guide.json` just lists the generated PNGs as slides. Then verify (render a
    PDF page, Read it).
@@ -56,7 +56,7 @@ Working files (HTML, PNGs, configs) live fine in a scratch dir like
         {"label": "What it does", "html": "A living markdown doc ..."},
         {"label": "How to use",   "html": "Fires at the <strong>start</strong> ..."}
       ],
-      "foot_left": "~/.claude/skills/manifest",
+      "foot_left": "~/skills/manifest",
       "foot_right": "LIVING TASK MANIFEST"
     }
   ]

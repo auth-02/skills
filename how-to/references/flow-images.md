@@ -23,11 +23,11 @@ directly into the styled PDF. Needs Pillow (`python3 -c "import PIL"`; if missin
 
 3. **Write a config** `guide.json` (preferred — full control) and run:
    ```bash
-   python3 ~/.claude/skills/how-to/scripts/build_guide_pdf.py --config /abs/path/guide.json
+   python3 ~/skills/how-to/scripts/build_guide_pdf.py --config /abs/path/guide.json
    ```
    Or quick mode for a plain folder with no per-slide tweaks:
    ```bash
-   python3 ~/.claude/skills/how-to/scripts/build_guide_pdf.py \
+   python3 ~/skills/how-to/scripts/build_guide_pdf.py \
      --images "/abs/path/to/folder" --output "/abs/path/Guide.pdf" \
      --title "My Guide" --intro "One or two sentences." \
      --eyebrow "PRODUCT  ·  BETA" --footer "ACME  ·  How-to"

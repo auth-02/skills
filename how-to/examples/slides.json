@@ -21,7 +21,7 @@
         {"label": "Which flow", "html": "<strong>Images provided</strong> (screenshots, exported diagrams) → <strong>Flow 1</strong>: assemble them directly. <strong>No images</strong> (documenting a concept, an API, a checklist — nothing to screenshot) → <strong>Flow 2</strong>: generate styled slides from content, then assemble them."},
         {"label": "Setup", "html": "Both flows are Python. Assembling needs <strong>Pillow</strong>; generating (Flow 2) also needs <strong>headless Chrome</strong>. The skill uses <em>progressive disclosure</em> — <code>SKILL.md</code> is a lean router that points you at <code>references/flow-images.md</code> or <code>references/flow-content.md</code> for the full steps."}
       ],
-      "foot_left": "~/.claude/skills/how-to",
+      "foot_left": "~/skills/how-to",
       "foot_right": "PICK A FLOW"
     },
     {
